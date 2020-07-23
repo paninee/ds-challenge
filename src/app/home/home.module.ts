@@ -5,10 +5,10 @@ import { Ng5SliderModule } from 'ng5-slider';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
-
+import { GaugeComponent } from './charts/gauge.component';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, GaugeComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
