@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -11,9 +11,9 @@ am4core.useTheme(am4themes_animated);
   `
 })
 export class GaugeComponent implements AfterViewInit, OnDestroy {
+	@Input() chartId: string;
 	private chart: am4charts.GaugeChart;
 	public am4charts: any;
-	public chartId: string
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
@@ -22,11 +22,11 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create(this.chartId, am4charts.GaugeChart);
-      chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
-      chart.innerRadius = -25;
+			let chart = am4core.create(this.chartId, am4charts.GaugeChart);
+			chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+			chart.innerRadius = -25;
 
-      var axis = chart.xAxes.push(new this.am4charts.ValueAxis());
+			var axis = chart.xAxes.push(new this.am4charts.ValueAxis());
 			axis.min = 0;
 			axis.max = 100;
 			axis.strictMinMax = true;

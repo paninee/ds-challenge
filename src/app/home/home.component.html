@@ -96,7 +96,7 @@
   <div class="charts">
     <div class="row">
       <div class="col">
-        <app-gauge class="w-100"></app-gauge>
+        <app-gauge class="w-100" [chartId]="'riskChart'"></app-gauge>
       </div>
       <div class="col cases">
         <div class="d-block text-center">
@@ -108,10 +108,10 @@
     </div>
     <div class="row">
       <div class="col">
-        <app-pie class="w-100"></app-pie>
+        <app-pie class="w-100" [chartId]="'pieChart'"></app-pie>
       </div>
       <div class="col">
-         <app-dounut class="w-100"></app-dounut>
+         <app-dounut class="w-100" [chartId]="'dounutChart'"></app-dounut>
       </div>
     </div>
   </div>

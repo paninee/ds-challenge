@@ -1,4 +1,4 @@
-import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -11,9 +11,9 @@ am4core.useTheme(am4themes_animated);
   `
 })
 export class PieComponent implements AfterViewInit, OnDestroy {
+	@Input() chartId: string;
 	private chart: am4charts.PieChart;
 	public am4charts: any;
-	public chartId: string
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
