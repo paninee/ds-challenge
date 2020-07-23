@@ -113,7 +113,17 @@
       </div>
       <div class="col">
         <h3 class="text-center">Acquisition</h3>
-        <app-pie class="w-100" [chartId]="'acquisitionAgePieChart'"></app-pie>
+        <app-pie class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition"></app-pie>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h3 class="text-center">Outcome</h3>
+        <app-dounut class="w-100" [chartId]="'outcomeChart'"></app-dounut>
+      </div>
+      <div class="col">
+        <h3 class="text-center">Outbreak Related</h3>
+        <app-pie class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.acquisition"></app-pie>
       </div>
     </div>
   </div>

@@ -50,7 +50,8 @@ export class HomeComponent {
     this.reportsMetaData = {
       newCases: this.appService.formatNumber(dt.newCases({acquisition: 'Travel-Related'})),
       threatLevel: dt.threatLevel(null),
-      ages: dt.ages(null).map(x => { return {value: x.count, label: x.Age_Group}; })
+      ages: dt.ages(null).map(x => { return {value: x.count, label: x.Age_Group}; }),
+      acquisition: dt.acquisitions(null).map(x => { return {value: x.count, label: x.Case_AcquisitionInfo}; })
     }
   }
 
