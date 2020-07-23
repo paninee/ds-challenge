@@ -6,13 +6,22 @@
 import dl from 'datalib';
 
 export class DataTransformation {
-  private _data: any;
+  private data: any;
 
   constructor(data: any) {
-    this._data = data;
+    this.data = data;
   }
 
-  public threatLevel(filter) {
+  private applyFilter(filter){
+    if(filter.acquisition){
+      this.data = this.data.filter(d => d.Case_AcquisitionInfo == filter.acquisition);
+    }
+    if(filter.gender){
+      this.data = this.data.filter(d => d.Client_Gender == filter.gender);
+    }
+  }
+
+  public threatLevel(filter) { //TODO: needs actual implementation
     return {
       label: 'high',
       score: 60
@@ -20,17 +29,30 @@ export class DataTransformation {
   }
 
   public newCases(filter){
-    if(filter && filter.acquisition){
-      this._data.filter(d => d.Case_AcquisitionInfo == filter.acquisition);
+    if(filter){
+      this.applyFilter(filter);
     }
-    return dl.count(this._data);
+    return dl.count(this.data);
   }
 
   public ages(filter){
-    return dl.groupby('Age_Group').count().execute(this._data);
+    if(filter){
+      this.applyFilter(filter);
+    }
+    return dl.groupby('Age_Group').count().execute(this.data);
   };
 
   public acquisitions(filter){
-    return dl.groupby('Case_AcquisitionInfo').count().execute(this._data);
+    if(filter){
+      this.applyFilter(filter);
+    }
+    return dl.groupby('Case_AcquisitionInfo').count().execute(this.data);
+  }
+
+  public outbreakRelates(filter){
+    if(filter){
+      this.applyFilter(filter);
+    }
+    return dl.groupby('Outbreak_Related').count().execute(this.data);
   }
 };
