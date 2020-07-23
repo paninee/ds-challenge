@@ -11,42 +11,50 @@ am4core.useTheme(am4themes_animated);
   `
 })
 export class GaugeComponent implements AfterViewInit, OnDestroy {
-	private chart: am4charts.XYChart;
+	private chart: am4charts.GaugeChart;
+	public am4charts: any;
 
-  constructor(private zone: NgZone) { }
+  constructor(private zone: NgZone) {
+  	this.am4charts = am4charts;
+  }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create("gauge-chart", am4charts.XYChart);
+      let chart = am4core.create("gauge-chart", am4charts.GaugeChart);
+      chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+      chart.innerRadius = -25;
 
-      chart.paddingRight = 20;
+      var axis = chart.xAxes.push(new this.am4charts.ValueAxis());
+			axis.min = 0;
+			axis.max = 100;
+			axis.strictMinMax = true;
+			axis.renderer.grid.template.stroke = new am4core.InterfaceColorSet().getFor("background");
+			axis.renderer.grid.template.strokeOpacity = 0.3;
 
-      let data = [];
-      let visits = 10;
-      for (let i = 1; i < 366; i++) {
-        visits += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
-        data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
-      }
+			var colorSet = new am4core.ColorSet();
 
-      chart.data = data;
+			var range0 = axis.axisRanges.create();
+			range0.value = 0;
+			range0.endValue = 50;
+			range0.axisFill.fillOpacity = 1;
+			range0.axisFill.fill = colorSet.getIndex(0);
+			range0.axisFill.zIndex = - 1;
 
-      let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-      dateAxis.renderer.grid.template.location = 0;
+			var range1 = axis.axisRanges.create();
+			range1.value = 50;
+			range1.endValue = 80;
+			range1.axisFill.fillOpacity = 1;
+			range1.axisFill.fill = colorSet.getIndex(2);
+			range1.axisFill.zIndex = -1;
 
-      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-      valueAxis.tooltip.disabled = true;
-      valueAxis.renderer.minWidth = 35;
+			var range2 = axis.axisRanges.create();
+			range2.value = 80;
+			range2.endValue = 100;
+			range2.axisFill.fillOpacity = 1;
+			range2.axisFill.fill = colorSet.getIndex(4);
+			range2.axisFill.zIndex = -1;
 
-      let series = chart.series.push(new am4charts.LineSeries());
-      series.dataFields.dateX = "date";
-      series.dataFields.valueY = "value";
-
-      series.tooltipText = "{valueY.value}";
-      chart.cursor = new am4charts.XYCursor();
-
-      let scrollbarX = new am4charts.XYChartScrollbar();
-      scrollbarX.series.push(series);
-      chart.scrollbarX = scrollbarX;
+			var hand = chart.hands.push(new am4charts.ClockHand());
 
       this.chart = chart;
     });
