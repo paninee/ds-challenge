@@ -7,9 +7,10 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { GaugeComponent } from './charts/gauge.component';
 import { PieComponent } from './charts/pie.component';
+import { DounutComponent } from './charts/dounut.component';
 
 @NgModule({
-  declarations: [HomeComponent, GaugeComponent, PieComponent],
+  declarations: [HomeComponent, GaugeComponent, PieComponent, DounutComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
