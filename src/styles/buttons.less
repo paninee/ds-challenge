@@ -15,3 +15,30 @@ button {
     border-color: lighten(@main-color, 10%) !important;
   }
 }
+
+.button-switcher {
+  .btn-group {
+    border: 1px solid @main-color;
+    border-radius: 5px;
+
+    .btn {
+      border-radius: 0;
+      color: @main-color;
+      box-shadow: none;
+
+      &:not(:last-child){
+        border-right: 1px solid @main-color;
+      }
+
+      &.btn-primary {
+        color: white;
+        background: @main-color !important;
+        border-color: @main-color !important;
+      }
+    }
+  }
+
+  button {
+    text-transform: capitalize;
+  }
+}
