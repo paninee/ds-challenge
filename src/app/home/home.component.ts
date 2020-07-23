@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
   public sliderHighValue: number = 60;
   public sliderOptions: Options = {
     floor: 0,
-    ceil: 100
+    ceil: 100,
+    animate: false
   };
 	
   constructor() { }
