@@ -19,6 +19,12 @@ export class DataTransformation {
     if(filter.gender){
       this.data = this.data.filter(d => d.Client_Gender == filter.gender);
     }
+    if(filter.outcome){
+      this.data = this.data.filter(d => d.Outcome1 == filter.outcome);
+    }
+    if(filter.isOutbreakRelated){
+      this.data = this.data.filter(d => d.Outbreak_Related == filter.isOutbreakRelated ? 'Yes' : '(blank)');
+    }
   }
 
   public threatLevel(filter) { //TODO: needs actual implementation
