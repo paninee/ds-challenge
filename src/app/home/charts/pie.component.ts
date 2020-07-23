@@ -11,7 +11,7 @@ am4core.useTheme(am4themes_animated);
   `
 })
 export class PieComponent implements AfterViewInit, OnDestroy {
-	private chart: am4charts.GaugeChart;
+	private chart: am4charts.PieChart;
 	public am4charts: any;
 
   constructor(private zone: NgZone) {
@@ -20,41 +20,50 @@ export class PieComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create("pie-chart", am4charts.GaugeChart);
-      chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
-      chart.innerRadius = -25;
+      let chart = am4core.create("pie-chart", am4charts.PieChart);
+      
+			// Add data
+			chart.data = [ {
+			  "country": "Lithuania",
+			  "litres": 501.9
+			}, {
+			  "country": "Czechia",
+			  "litres": 301.9
+			}, {
+			  "country": "Ireland",
+			  "litres": 201.1
+			}, {
+			  "country": "Germany",
+			  "litres": 165.8
+			}, {
+			  "country": "Australia",
+			  "litres": 139.9
+			}, {
+			  "country": "Austria",
+			  "litres": 128.3
+			}, {
+			  "country": "UK",
+			  "litres": 99
+			}, {
+			  "country": "Belgium",
+			  "litres": 60
+			}, {
+			  "country": "The Netherlands",
+			  "litres": 50
+			} ];
 
-      var axis = chart.xAxes.push(new this.am4charts.ValueAxis());
-			axis.min = 0;
-			axis.max = 100;
-			axis.strictMinMax = true;
-			axis.renderer.grid.template.stroke = new am4core.InterfaceColorSet().getFor("background");
-			axis.renderer.grid.template.strokeOpacity = 0.3;
+			// Add and configure Series
+			var pieSeries = chart.series.push(new am4charts.PieSeries());
+			pieSeries.dataFields.value = "litres";
+			pieSeries.dataFields.category = "country";
+			pieSeries.slices.template.stroke = am4core.color("#fff");
+			pieSeries.slices.template.strokeWidth = 2;
+			pieSeries.slices.template.strokeOpacity = 1;
 
-			var colorSet = new am4core.ColorSet();
-
-			var range0 = axis.axisRanges.create();
-			range0.value = 0;
-			range0.endValue = 50;
-			range0.axisFill.fillOpacity = 1;
-			range0.axisFill.fill = colorSet.getIndex(0);
-			range0.axisFill.zIndex = - 1;
-
-			var range1 = axis.axisRanges.create();
-			range1.value = 50;
-			range1.endValue = 80;
-			range1.axisFill.fillOpacity = 1;
-			range1.axisFill.fill = colorSet.getIndex(2);
-			range1.axisFill.zIndex = -1;
-
-			var range2 = axis.axisRanges.create();
-			range2.value = 80;
-			range2.endValue = 100;
-			range2.axisFill.fillOpacity = 1;
-			range2.axisFill.fill = colorSet.getIndex(4);
-			range2.axisFill.zIndex = -1;
-
-			var hand = chart.hands.push(new am4charts.ClockHand());
+			// This creates initial animation
+			pieSeries.hiddenState.properties.opacity = 1;
+			pieSeries.hiddenState.properties.endAngle = -90;
+			pieSeries.hiddenState.properties.startAngle = -90;
 
       this.chart = chart;
     });
