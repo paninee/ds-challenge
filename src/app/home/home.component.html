@@ -108,10 +108,12 @@
     </div>
     <div class="row">
       <div class="col">
-        <app-pie class="w-100" [chartId]="'pieChart'"></app-pie>
+        <h3 class="text-center">Age</h3>
+        <app-pie class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages"></app-pie>
       </div>
       <div class="col">
-         <app-dounut class="w-100" [chartId]="'dounutChart'"></app-dounut>
+        <h3 class="text-center">Acquisition</h3>
+        <app-pie class="w-100" [chartId]="'acquisitionAgePieChart'"></app-pie>
       </div>
     </div>
   </div>

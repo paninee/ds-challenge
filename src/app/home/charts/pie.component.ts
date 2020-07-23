@@ -12,6 +12,7 @@ am4core.useTheme(am4themes_animated);
 })
 export class PieComponent implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
+	@Input() data: any[] = [];
 	private chart: am4charts.PieChart;
 	public am4charts: any;
 
@@ -25,47 +26,18 @@ export class PieComponent implements AfterViewInit, OnDestroy {
       let chart = am4core.create(this.chartId, am4charts.PieChart);
 
 			// Add data
-			chart.data = [ {
-			  "country": "Lithuania",
-			  "litres": 501.9
-			}, {
-			  "country": "Czechia",
-			  "litres": 301.9
-			}, {
-			  "country": "Ireland",
-			  "litres": 201.1
-			}, {
-			  "country": "Germany",
-			  "litres": 165.8
-			}, {
-			  "country": "Australia",
-			  "litres": 139.9
-			}, {
-			  "country": "Austria",
-			  "litres": 128.3
-			}, {
-			  "country": "UK",
-			  "litres": 99
-			}, {
-			  "country": "Belgium",
-			  "litres": 60
-			}, {
-			  "country": "The Netherlands",
-			  "litres": 50
-			} ];
+			chart.data = this.data;
 
 			// Add and configure Series
 			var pieSeries = chart.series.push(new am4charts.PieSeries());
-			pieSeries.dataFields.value = "litres";
-			pieSeries.dataFields.category = "country";
-			pieSeries.slices.template.stroke = am4core.color("#fff");
-			pieSeries.slices.template.strokeWidth = 2;
-			pieSeries.slices.template.strokeOpacity = 1;
+			pieSeries.dataFields.value = "value";
+			pieSeries.dataFields.category = "label";
 
-			// This creates initial animation
-			pieSeries.hiddenState.properties.opacity = 1;
-			pieSeries.hiddenState.properties.endAngle = -90;
-			pieSeries.hiddenState.properties.startAngle = -90;
+			pieSeries.ticks.template.disabled = true;
+			pieSeries.alignLabels = false;
+			pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
+			pieSeries.labels.template.radius = am4core.percent(-40);
+			pieSeries.labels.template.fill = am4core.color("white");
 
       this.chart = chart;
     });
