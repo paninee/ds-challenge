@@ -5,23 +5,32 @@
 
 import dl from 'datalib';
 
-const threatLevel = (data, filters): any => {
-  return {
-    label: 'high',
-    score: 60
+export class DataTransformation {
+  private _data: any;
+
+  constructor(data: any) {
+    this._data = data;
+  }
+
+  public threatLevel(filter) {
+    return {
+      label: 'high',
+      score: 60
+    };
+  }
+
+  public newCases(filter){
+    if(filter && filter.acquisition){
+      this._data.filter(d => d.Case_AcquisitionInfo == filter.acquisition);
+    }
+    return dl.count(this._data);
+  }
+
+  public ages(filter){
+    return dl.groupby('Age_Group').count().execute(this._data);
   };
-};
 
-const newCases = (data, filters): any => {
-  return dl.format.summary(data);
-};
-
-const ages = (data, filters): number => {
-  return 189;
-};
-
-export {
-  threatLevel,
-  newCases,
-  ages
+  public acquisitions(filter){
+    return dl.groupby('Case_AcquisitionInfo').count().execute(this._data);
+  }
 };

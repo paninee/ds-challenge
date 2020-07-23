@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './util/app.service';
-import { threatLevel, newCases, ages } from './util/data-transform';
+import { DataTransformation } from './util/data-transform';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +12,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
   	var data = this.appService.getRecords();
-    console.log(threatLevel(data, null));
-    console.log(newCases(data, null));
-    console.log(ages(data, null));
+    var dt = new DataTransformation(data);
+    console.log(dt.threatLevel(null));
+    console.log(dt.newCases({
+      acquisition: 'Travel-Related'
+    }));
+    console.log(dt.ages(null));
+    console.log(dt.acquisitions(null));
   }
 }
