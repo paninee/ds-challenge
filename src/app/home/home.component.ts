@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { AppService } from './../util/app.service';
+am4core.useTheme(am4themes_animated);
 
 @Component({
   selector: 'app-home',
