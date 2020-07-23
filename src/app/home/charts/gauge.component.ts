@@ -56,7 +56,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			axis2.renderer.grid.template.strokeOpacity = 0.3;
 
 			const data = {
-			  score: 52.7,
+			  score: this.threatLevel.score,
 			  gradingData: [
 			    {
 			      color: "#8bc34a",
@@ -97,6 +97,8 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			  range.label.fontSize = "0.9em";
 			}
 
+			const matchingGrade = this.lookUpGrade(data.score, data.gradingData);
+
 			const label = chart.radarContainer.createChild(am4core.Label);
 			label.isMeasured = false;
 			label.fontSize = "6em";
@@ -107,7 +109,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			//label.dataItem = data;
 			label.text = data.score.toFixed(1);
 			label.text = `${this.threatLevel.score}`;
-			label.fill = am4core.color('#ff0000');
+			label.fill = am4core.color(matchingGrade.color);
 
 			const label2 = chart.radarContainer.createChild(am4core.Label);
 			label2.isMeasured = false;
@@ -115,7 +117,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			label2.horizontalCenter = "middle";
 			label2.verticalCenter = "bottom";
 			label2.text = this.threatLevel.label.toUpperCase();
-			label2.fill = am4core.color('#ff0000');
+			label2.fill = am4core.color(matchingGrade.color);
 
 			const hand = chart.hands.push(new am4charts.ClockHand());
 			hand.axis = axis2;
@@ -126,12 +128,25 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			hand.fill = am4core.color("#444");
 			hand.stroke = am4core.color("#000");
 
-
-
       this.chart = chart;
     });
   }
-ngOnDestroy() {
+
+  lookUpGrade(lookupScore, grades) {
+	  // Only change code below this line
+	  for (var i = 0; i < grades.length; i++) {
+	    if (
+	      grades[i].lowScore < lookupScore &&
+	      grades[i].highScore >= lookupScore
+	    ) {
+	      return grades[i];
+	    }
+	  }
+	  return null;
+	}
+
+
+	ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose();
