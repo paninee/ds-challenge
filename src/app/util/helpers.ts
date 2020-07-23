@@ -6,7 +6,7 @@ const csvJSON = (csv): any[] => {
   const lines = csv.split("\n");
   let headers = lines[0].split(",");
   let result = [];
-  
+
 
   for(var i = 1; i < lines.length; i++) {
     var obj = {};
@@ -19,7 +19,7 @@ const csvJSON = (csv): any[] => {
     result.push(obj);
   }
   return result;
-}
+};
 
 
 export {
