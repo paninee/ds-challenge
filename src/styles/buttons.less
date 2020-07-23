@@ -1,0 +1,17 @@
+button {
+  outline: 0 !important;
+}
+.btn:focus {
+  box-shadow: none !important;
+}
+.btn-primary {
+  color: white;
+  background: @main-color !important;
+  border-color: @main-color !important;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+    background: lighten(@main-color, 10%) !important;
+    border-color: lighten(@main-color, 10%) !important;
+  }
+}

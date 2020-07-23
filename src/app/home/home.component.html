@@ -19,8 +19,11 @@
           <input type="text" class="form-control" placeholder="To">
         </div>
      </div>
+     <div class="collapse" [ngClass]="{'show': showAdvanceFilter}">
+       <h1>collapse</h1>
+     </div>
      <div class="d-flex">
-       <div id="range"></div>
+       <button type="button" class="btn btn-primary btn-block" (click)="showAdvanceFilter = !showAdvanceFilter">Advance Filter</button>
      </div>
     </form>
   </div>
