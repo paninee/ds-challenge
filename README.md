@@ -9,4 +9,3 @@ This project will try to answer questions
 - how bad is the situation around me, currently?
 
 ## Libraries used
-- Angular Material (@angular/material)

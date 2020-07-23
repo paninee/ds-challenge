@@ -10,11 +10,11 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit() {
-  	this.appService.getRecords().subscribe(data => {
-  		console.log(data);
-  	},
-  	error => {
-  		console.error(error);
-  	});
+  	// this.appService.getRecords().subscribe(data => {
+  	// 	console.log(data);
+  	// },
+  	// error => {
+  	// 	console.error(error);
+  	// });
   }
 }
