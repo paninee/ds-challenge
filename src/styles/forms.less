@@ -1,0 +1,26 @@
+input {
+	&:focus {
+		box-shadow: none !important;
+		border-color: #ced4da !important;
+		outline: 0 !important;
+	}
+}
+
+.form-group {
+	&.with-icon-left {
+    input {
+    	border-left: none;
+	    border-top-left-radius: 0;
+	    border-bottom-left-radius: 0;
+	    padding-left: 0;
+    }
+
+    .icon-container {
+    	border: 1px solid #ced4da;
+	    border-right: none;
+	    border-top-left-radius: 5px;
+	    border-bottom-left-radius: 5px;
+	    color: #6c6c6c;
+    }
+	}
+}
