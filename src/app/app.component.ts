@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { csvJSON } from './util/helpers'
+import { AppService } from './util/app.service';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +7,14 @@ import { csvJSON } from './util/helpers'
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  public userArray: any[] = [];
-  constructor(private httpClient: HttpClient) {}
+  constructor(private appService: AppService) {}
 
   ngOnInit() {
-  	this.httpClient.get(`assets/OntarioCovid19Cases.csv`, {responseType: 'text'}).subscribe(data => {
-  		const json = csvJSON(data);
-  		console.log(json);
+  	this.appService.getRecords().subscribe(data => {
+  		console.log(data);
   	},
   	error => {
-  		console.log(error);
+  		console.error(error);
   	});
   }
 }
