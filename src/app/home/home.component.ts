@@ -48,7 +48,8 @@ export class HomeComponent {
     const data = this.appService.getRecords();
     const dt = new DataTransformation(data);
     this.reportsMetaData = {
-      newCases: this.appService.formatNumber(dt.newCases({acquisition: 'Travel-Related'}))
+      newCases: this.appService.formatNumber(dt.newCases({acquisition: 'Travel-Related'})),
+      threatLevel: dt.threatLevel(null)
     }
   }
 

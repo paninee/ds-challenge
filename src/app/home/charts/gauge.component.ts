@@ -106,7 +106,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			label.verticalCenter = "bottom";
 			//label.dataItem = data;
 			label.text = data.score.toFixed(1);
-			//label.text = "{score}";
+			label.text = `${this.threatLevel.score}`;
 			label.fill = am4core.color('#ff0000');
 
 			const label2 = chart.radarContainer.createChild(am4core.Label);
@@ -114,9 +114,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			label2.fontSize = "2em";
 			label2.horizontalCenter = "middle";
 			label2.verticalCenter = "bottom";
-			// label2.text = matchingGrade.title.toUpperCase();
-			// label2.fill = am4core.color(matchingGrade.color);
-			label2.text = 'Test';
+			label2.text = this.threatLevel.label.toUpperCase();
 			label2.fill = am4core.color('#ff0000');
 
 			const hand = chart.hands.push(new am4charts.ClockHand());
@@ -124,7 +122,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			hand.innerRadius = am4core.percent(55);
 			hand.startWidth = 8;
 			hand.pin.disabled = true;
-			hand.value = data.score;
+			hand.value = this.threatLevel.score;
 			hand.fill = am4core.color("#444");
 			hand.stroke = am4core.color("#000");
 

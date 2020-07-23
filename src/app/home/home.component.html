@@ -96,7 +96,7 @@
   <div class="charts">
     <div class="row">
       <div class="col">
-        <app-gauge class="w-100" [chartId]="'riskChart'"></app-gauge>
+        <app-gauge class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-gauge>
       </div>
       <div class="col cases">
         <div class="d-block text-center">
