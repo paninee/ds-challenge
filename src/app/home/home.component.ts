@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { AppService } from './../util/app.service';
 
 @Component({
   selector: 'app-home',
@@ -17,11 +18,26 @@ export class HomeComponent implements OnInit {
     animate: false
   };
   public searchForm: FormGroup;
+  public selectOptions: {acquisition: any, outcome: any};
 	
   constructor(
     private fb: FormBuilder,
+    public appService: AppService
   ) {
     this.initiateForm();
+    this.selectOptions = {
+      acquisition: [
+        {key: 'Contact of a confirmed case', name: 'Contact of a confirmed case'},
+        {key: 'Travel-Related', name: 'Travel-Related'},
+        {key: 'Information pending', name: 'Information pending'},
+        {key: 'Neither', name: 'Neither'}
+      ],
+      outcome: [
+        {key: 'Resolved', name: 'Resolved'},
+        {key: 'Not Resolved', name: 'Not Resolved'},
+        {key: 'Fatal', name: 'Fatal'}
+      ]
+    };
   }
 
   ngOnInit() {

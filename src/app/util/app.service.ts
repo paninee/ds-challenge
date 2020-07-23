@@ -14,4 +14,8 @@ export class AppService {
   getRecords():Observable<any> {
     return dl.csv('assets/OntarioCovid19Cases.csv');
   }
+
+  trackByFn(index, item): void {
+    return index;
+  }
 }
