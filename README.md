@@ -8,4 +8,7 @@ This project will try to answer questions
 - who are infected with COVID around me?
 - how bad is the situation around me, currently?
 
-## Libraries used
+## Setup
+
+
+## External Libraries
