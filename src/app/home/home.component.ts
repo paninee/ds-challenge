@@ -65,4 +65,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  prepareFields(): void {
+    this.showAdvanceFilter = !this.showAdvanceFilter;
+    console.log(this.searchForm.value);
+  }
+
 }

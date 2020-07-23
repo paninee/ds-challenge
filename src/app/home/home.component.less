@@ -1,9 +1,16 @@
+@import './../../lib';
+
 .search-form {
 	.gender {
 		button {
 			border: none;
 			background: none;
 			font-size: 30px;
+
+			&.selected {
+				background: @main-color;
+				color: white;
+			}
 		}
 	}
 	.form-group {
