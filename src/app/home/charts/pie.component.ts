@@ -7,21 +7,23 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-pie',
   template: `
-  	<div id="pie-chart" style="width: 100%; height: 500px"></div>
+  	<div [id]="chartId" style="width: 100%; height: 500px"></div>
   `
 })
 export class PieComponent implements AfterViewInit, OnDestroy {
 	private chart: am4charts.PieChart;
 	public am4charts: any;
+	public chartId: string
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
+  	this.chartId = `app-pie-${Date.now()}`;
   }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create("pie-chart", am4charts.PieChart);
-      
+      let chart = am4core.create(this.chartId, am4charts.PieChart);
+
 			// Add data
 			chart.data = [ {
 			  "country": "Lithuania",

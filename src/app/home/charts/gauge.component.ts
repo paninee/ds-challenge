@@ -7,20 +7,22 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-gauge',
   template: `
-  	<div id="gauge-chart" style="width: 100%; height: 500px"></div>
+  	<div [id]="chartId" style="width: 100%; height: 500px"></div>
   `
 })
 export class GaugeComponent implements AfterViewInit, OnDestroy {
 	private chart: am4charts.GaugeChart;
 	public am4charts: any;
+	public chartId: string
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
+  	this.chartId = `app-gauge-${Date.now()}`;
   }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create("gauge-chart", am4charts.GaugeChart);
+      let chart = am4core.create(this.chartId, am4charts.GaugeChart);
       chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
       chart.innerRadius = -25;
 
