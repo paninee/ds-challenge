@@ -1,10 +1,11 @@
-import { Component, OnInit, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import { AppService } from './../util/app.service';
+import { DataTransformation } from './../util/data-transform';
 am4core.useTheme(am4themes_animated);
 
 @Component({
@@ -12,8 +13,9 @@ am4core.useTheme(am4themes_animated);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less']
 })
-export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HomeComponent implements AfterViewInit, OnDestroy {
   private chart: am4charts.XYChart;
+  public reportsMetaData: any;
 
 	public showAdvanceFilter: boolean;
 	public sliderValue: number = 30;
@@ -45,9 +47,15 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         {key: 'Fatal', name: 'Fatal'}
       ]
     };
+    this.generateReports();
   }
 
-  ngOnInit() {
+  generateReports(): void {
+    const data = this.appService.getRecords();
+    const dt = new DataTransformation(data);
+    this.reportsMetaData = {
+      newCases: this.appService.formatNumber(dt.newCases({acquisition: 'Travel-Related'}))
+    }
   }
 
   ngAfterViewInit() {

@@ -18,4 +18,9 @@ export class AppService {
   trackByFn(index, item): void {
     return index;
   }
+
+  formatNumber(number: number, decimalCount: number = 0) {
+    var num = number.toFixed(decimalCount);
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
+  }
 }
