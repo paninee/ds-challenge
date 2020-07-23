@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './util/app.service';
-import { threatLevel } from './util/data-transform';
+import { threatLevel, newCases, ages } from './util/data-transform';
 
 @Component({
   selector: 'app-root',
@@ -11,11 +11,9 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit() {
-  	this.appService.getRecords().subscribe(data => {
-  		console.log(threatLevel(data, null));
-  	},
-  	error => {
-  		console.error(error);
-  	});
+  	var data = this.appService.getRecords();
+    console.log(threatLevel(data, null));
+    console.log(newCases(data, null));
+    console.log(ages(data, null));
   }
 }

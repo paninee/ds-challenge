@@ -3,7 +3,7 @@
  * @return JSON array;
  */
 
-import { DataFrame } from 'pandas-js';
+import dl from 'datalib';
 
 const threatLevel = (data, filters): any => {
   return {
@@ -12,8 +12,8 @@ const threatLevel = (data, filters): any => {
   };
 };
 
-const newCases = (data, filters): number => {
-  return 189;
+const newCases = (data, filters): any => {
+  return dl.format.summary(data);
 };
 
 const ages = (data, filters): number => {
