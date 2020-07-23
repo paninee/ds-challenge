@@ -24,38 +24,58 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
 			let chart = am4core.create(this.chartId, am4charts.GaugeChart);
 			chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
-			chart.innerRadius = -25;
+			chart.innerRadius = am4core.percent(80);
 
-			var axis = chart.xAxes.push(new this.am4charts.ValueAxis());
+			const chartMin = 0;
+			const chartMax = 100;
+			const axis = chart.xAxes.push(new this.am4charts.ValueAxis());
 			axis.min = 0;
 			axis.max = 100;
 			axis.strictMinMax = true;
 			axis.renderer.grid.template.stroke = new am4core.InterfaceColorSet().getFor("background");
 			axis.renderer.grid.template.strokeOpacity = 0.3;
 
-			var colorSet = new am4core.ColorSet();
+			const data = {
+			  score: 52.7,
+			  gradingData: [
+			    {
+			      color: "#8bc34a",
+			      lowScore: 0,
+			      highScore: 25
+			    },
+			    {
+			      color: "#fdd835",
+			      lowScore: 25,
+			      highScore: 50
+			    },
+			    {
+			      color: "#f57f17",
+			      lowScore: 50,
+			      highScore: 75
+			    },
+			    {
+			      color: "#E92036",
+			      lowScore: 75,
+			      highScore: 100
+			    }
+			  ]
+			};
 
-			var range0 = axis.axisRanges.create();
-			range0.value = 0;
-			range0.endValue = 50;
-			range0.axisFill.fillOpacity = 1;
-			range0.axisFill.fill = colorSet.getIndex(0);
-			range0.axisFill.zIndex = - 1;
-
-			var range1 = axis.axisRanges.create();
-			range1.value = 50;
-			range1.endValue = 80;
-			range1.axisFill.fillOpacity = 1;
-			range1.axisFill.fill = colorSet.getIndex(2);
-			range1.axisFill.zIndex = -1;
-
-			var range2 = axis.axisRanges.create();
-			range2.value = 80;
-			range2.endValue = 100;
-			range2.axisFill.fillOpacity = 1;
-			range2.axisFill.fill = colorSet.getIndex(4);
-			range2.axisFill.zIndex = -1;
-
+			for (let grading of data.gradingData) {
+			  var range = axis.axisRanges.create();
+			  range.axisFill.fill = am4core.color(grading.color);
+			  range.axisFill.fillOpacity = 1;
+			  range.axisFill.zIndex = -1;
+			  range.value = grading.lowScore > chartMin ? grading.lowScore : chartMin;
+			  range.endValue = grading.highScore < chartMax ? grading.highScore : chartMax;
+			  range.grid.strokeOpacity = 0;
+			  range.stroke = am4core.color(grading.color).lighten(-0.1);
+			  range.label.location = 0.5;
+			  range.label.inside = true;
+			  range.label.radius = am4core.percent(10);
+			  range.label.paddingBottom = -5; // ~half font size
+			  range.label.fontSize = "0.9em";
+			}
 			var hand = chart.hands.push(new am4charts.ClockHand());
 
       this.chart = chart;
