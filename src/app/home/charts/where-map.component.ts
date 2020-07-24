@@ -1,7 +1,7 @@
 import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
-import am4geodata_usaLow from "@amcharts/amcharts4-geodata/usaLow";
+import am4geodata_region_canada_onLow from "@amcharts/amcharts4-geodata/region/canada/onLow";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
@@ -34,26 +34,26 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
       chart.maxZoomLevel = 64;
 
       // Set map definition
-      chart.geodata = am4geodata_usaLow;
+      chart.geodata = am4geodata_region_canada_onLow;
 
       // Set projection
-      chart.projection = new am4maps.projections.AlbersUsa();
+      chart.projection = new am4maps.projections.Miller();
 
       // Add button
-      let zoomOut = chart.tooltipContainer.createChild(am4core.ZoomOutButton);
-      zoomOut.align = "right";
-      zoomOut.valign = "top";
-      zoomOut.margin(20, 20, 20, 20);
-      zoomOut.events.on("hit", () => {
-        if (currentSeries) {
-          currentSeries.hide();
-        }
-        chart.goHome();
-        zoomOut.hide();
-        currentSeries = regionalSeries.US.series;
-        currentSeries.show();
-      });
-      zoomOut.hide();
+      // let zoomOut = chart.tooltipContainer.createChild(am4core.ZoomOutButton);
+      // zoomOut.align = "right";
+      // zoomOut.valign = "top";
+      // zoomOut.margin(20, 20, 20, 20);
+      // zoomOut.events.on("hit", () => {
+      //   if (currentSeries) {
+      //     currentSeries.hide();
+      //   }
+      //   chart.goHome();
+      //   zoomOut.hide();
+      //   currentSeries = regionalSeries.US.series;
+      //   currentSeries.show();
+      // });
+      // zoomOut.hide();
 
 
       // Create map polygon series
@@ -67,17 +67,17 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
       polygonTemplate.fill = chart.colors.getIndex(0);
 
       // Loads store data
-      const loadStores = () => {
-        let loader = new am4core.DataSource();
-        loader.url = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/TargetStores.json";
-        loader.events.on("parseended", function(ev) {
-          setupStores(ev.target.data);
-        });
-        loader.load();
-      }
+      // const loadStores = () => {
+      //   let loader = new am4core.DataSource();
+      //   loader.url = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/TargetStores.json";
+      //   loader.events.on("parseended", function(ev) {
+      //     setupStores(ev.target.data);
+      //   });
+      //   loader.load();
+      // }
 
       // Load data when map polygons are ready
-      chart.events.on("ready", loadStores);
+      // chart.events.on("ready", loadStores);
 
       // Creates a series
       const createSeries = (heatfield) => {
@@ -242,7 +242,7 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
 
         regionalSeries.US.series.data = regionalSeries.US.markerData;
       }
-      
+
       this.chart = chart;
     });
   }
