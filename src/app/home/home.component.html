@@ -106,11 +106,11 @@
     <div class="row">
       <div class="col-lg-6">
         <h3 class="text-center">Age</h3>
-        <app-pie class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-pie>
+        <app-age-chart class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-age-chart>
       </div>
       <div class="col-lg-6">
         <h3 class="text-center">Acquisition</h3>
-        <app-pie class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-pie>
+        <app-acquisition-chart class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-acquisition-chart>
       </div>
     </div>
     <div class="row">
@@ -120,7 +120,7 @@
       </div>
       <div class="col-lg-6">
         <h3 class="text-center">Outbreak Related</h3>
-        <app-pie class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-pie>
+        <app-outbreak-chart class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak-chart>
       </div>
     </div>
   </div>
