@@ -20,5 +20,6 @@ export class AppComponent implements OnInit {
     // console.log(dt.outbreakRelates(null));
     // console.log(dt.genders(null));
     // console.log(dt.outcomes(null));
+    // console.log(dt.whereMap(null));
   }
 }

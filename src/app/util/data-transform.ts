@@ -93,4 +93,14 @@ export class DataTransformation {
       fatalPercentage: Math.round(groupedData.find(gd => gd.Outcome1 === 'Fatal').count / newCaseCount * 100)
     };
   }
+
+  public whereMap(filter: FilterInterface){
+    if(filter){
+      this.applyFilter(filter);
+    }
+
+    let groupedData = dl.groupby(['Reporting_PHU', 'Reporting_PHU_Latitude', 'Reporting_PHU_Longitude']).count().execute(this.data);
+
+    return groupedData;
+  }
 };
