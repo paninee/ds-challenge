@@ -14,12 +14,11 @@ export class AppComponent implements OnInit {
   	var data = this.appService.getRecords();
     var dt = new DataTransformation(data);
     // console.log(dt.threatLevel(null));
-    // console.log(dt.newCases({
-    //   acquisition: 'Travel-Related'
-    // }));
+    // console.log(dt.newCases(null));
     // console.log(dt.ages(null));
     // console.log(dt.acquisitions(null));
     // console.log(dt.outbreakRelates(null));
     // console.log(dt.genders(null));
+    console.log(dt.outcomes(null));
   }
 }
