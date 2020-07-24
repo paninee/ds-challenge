@@ -1,4 +1,4 @@
-import { Component, NgZone, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -15,6 +15,11 @@ export class PieComponent implements AfterViewInit, OnDestroy {
 	@Input() data: any[] = [];
 	private chart: am4charts.PieChart;
 	public am4charts: any;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.generateWidth();
+  }
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
@@ -35,14 +40,22 @@ export class PieComponent implements AfterViewInit, OnDestroy {
 
 			pieSeries.ticks.template.disabled = true;
 			pieSeries.alignLabels = false;
-			pieSeries.labels.template.text = "[bold font-size: 20px]{category}\n{value.percent.formatNumber('#.0')}%[/]";
+			pieSeries.labels.template.text = "[bold]{category}\n{value.percent.formatNumber('#.0')}%[/]";
 			pieSeries.labels.template.radius = am4core.percent(-40);
+      pieSeries.labels.template.fontSize = '20px';
 			pieSeries.labels.template.fill = am4core.color("white");
 
       this.chart = chart;
     });
   }
-ngOnDestroy() {
+
+  generateWidth(): void {
+    if (document.body.clientWidth <= 930 ) {
+      console.log(this.chart.series);
+    }
+  }
+
+  ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose();
