@@ -24,13 +24,16 @@ export class PieChartParentClass {
 		var pieSeries = chart.series.push(new am4charts.PieSeries());
 		pieSeries.dataFields.value = this.dataFields.value;
 		pieSeries.dataFields.category = this.dataFields.category;
+		pieSeries.slices.template.stroke = am4core.color("#fff");
+		pieSeries.slices.template.strokeOpacity = 1;
 
-		pieSeries.ticks.template.disabled = true;
-		pieSeries.alignLabels = false;
-		pieSeries.labels.template.text = "[bold]{category}\n{value.percent.formatNumber('#.0')}%[/]";
-		pieSeries.labels.template.radius = am4core.percent(-40);
-    pieSeries.labels.template.fontSize = '20px';
-		pieSeries.labels.template.fill = am4core.color("white");
+
+		// This creates initial animation
+		pieSeries.hiddenState.properties.opacity = 1;
+		pieSeries.hiddenState.properties.endAngle = -90;
+		pieSeries.hiddenState.properties.startAngle = -90;
+
+		chart.hiddenState.properties.radius = am4core.percent(0);
 
 		this.chart = chart;
 	}
