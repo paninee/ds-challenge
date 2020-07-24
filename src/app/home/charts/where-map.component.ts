@@ -66,11 +66,8 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
       polygonTemplate.tooltipText = "{name}";
       polygonTemplate.fill = chart.colors.getIndex(0);
 
-      // Load data when map polygons are ready
-      chart.events.on("ready", loadStores);
-
       // Loads store data
-      function loadStores() {
+      const loadStores = () => {
         let loader = new am4core.DataSource();
         loader.url = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/TargetStores.json";
         loader.events.on("parseended", function(ev) {
@@ -79,8 +76,11 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
         loader.load();
       }
 
+      // Load data when map polygons are ready
+      chart.events.on("ready", loadStores);
+
       // Creates a series
-      function createSeries(heatfield) {
+      const createSeries = (heatfield) => {
         let series = chart.series.push(new am4maps.MapImageSeries());
         series.dataFields.value = heatfield;
 
@@ -155,7 +155,7 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
         return series;
       }
 
-      function setupStores(data) {
+      const setupStores = (data) => {
         // Init country-level series
         regionalSeries.US = {
           markerData: [],
@@ -242,8 +242,7 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
 
         regionalSeries.US.series.data = regionalSeries.US.markerData;
       }
-
-
+      
       this.chart = chart;
     });
   }
