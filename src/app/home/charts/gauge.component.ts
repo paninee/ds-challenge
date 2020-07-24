@@ -14,6 +14,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() threatLevel: {label: string, score: number} = {label: 'n/a', score: 0};
 	private chart: am4charts.GaugeChart;
+	private radarContainerLabel: any;
 	public am4charts: any;
 
 	@HostListener('window:resize', ['$event'])
@@ -93,6 +94,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			label.verticalCenter = "bottom";
 			label.text = `${this.threatLevel.label.toUpperCase()} RISK`;
 			label.fill = am4core.color(matchingGrade.color);
+			this.radarContainerLabel = label;
 
 			const hand = chart.hands.push(new am4charts.ClockHand());
 			hand.axis = axis;
@@ -121,8 +123,9 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 	}
 
 	responsiveHandler(): void {
+		this.radarContainerLabel.fontSize = "2rem";
     if (document.body.clientWidth <= 930 ) {
-      console.log(this.chart.radarContainer);
+      this.radarContainerLabel.fontSize = "1rem";
     }
   }
 
