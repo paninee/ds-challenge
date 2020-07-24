@@ -19,6 +19,10 @@ export class OutbreakChartComponent extends PieChart implements AfterViewInit, O
 
   constructor(private zone: NgZone) {
     super();
+    this.colorSet = [
+      '#9f1827',
+      '#6b9f1c'
+    ];
   }
 
   ngAfterViewInit() {
