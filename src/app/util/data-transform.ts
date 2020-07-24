@@ -1,3 +1,4 @@
+import { FilterInterface } from './interface';
 /**
  * Set of utility methods to transform data according to the graphs input
  * @return JSON array;
@@ -12,7 +13,7 @@ export class DataTransformation {
     this.data = data;
   }
 
-  private applyFilter(filter){
+  private applyFilter(filter: FilterInterface){
     if(filter.acquisition){
       this.data = this.data.filter(d => d.Case_AcquisitionInfo == filter.acquisition);
     }
@@ -34,28 +35,28 @@ export class DataTransformation {
     };
   }
 
-  public newCases(filter){
+  public newCases(filter: FilterInterface){
     if(filter){
       this.applyFilter(filter);
     }
     return dl.count(this.data);
   }
 
-  public ages(filter){
+  public ages(filter: FilterInterface){
     if(filter){
       this.applyFilter(filter);
     }
     return dl.groupby('Age_Group').count().execute(this.data);
   };
 
-  public acquisitions(filter){
+  public acquisitions(filter: FilterInterface){
     if(filter){
       this.applyFilter(filter);
     }
     return dl.groupby('Case_AcquisitionInfo').count().execute(this.data);
   }
 
-  public outbreakRelates(filter){
+  public outbreakRelates(filter: FilterInterface){
     if(filter){
       this.applyFilter(filter);
     }

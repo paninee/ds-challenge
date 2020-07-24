@@ -5,6 +5,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AppService } from './../util/app.service';
 import { DataTransformation } from './../util/data-transform';
+import { FilterInterface } from './../util/interface';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomeComponent implements OnDestroy {
     this.generateReports();
   }
 
-  generateReports(filters: any = {}): void {
+  generateReports(filters: FilterInterface = {}): void {
     const data = this.records;
     const dt = new DataTransformation(data);
     this.reportsMetaData = {
