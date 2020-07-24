@@ -9,12 +9,13 @@ export class PieChartParentClass {
 	public chartId: string;
 	public data: any[] = [];
 	public dataFields: {value: any, category: string};
+	public colorSet: any[] = [];
 
 	constructor() {
 		this.am4Charts = am4charts;
 	}
 
-	createChart(colorSet: any[] = []): void {
+	createChart(): void {
 		let chart = am4core.create(this.chartId, am4charts.PieChart);
 
 		// Add data
@@ -28,7 +29,7 @@ export class PieChartParentClass {
 		pieSeries.slices.template.strokeOpacity = 1;
 
 		// Generate color set
-		pieSeries.colors.list = this.generateColorSet(colorSet);
+		pieSeries.colors.list = this.generateColorSet();
 
 		// This creates initial animation
 		pieSeries.hiddenState.properties.opacity = 1;
@@ -39,8 +40,8 @@ export class PieChartParentClass {
 		this.chart = chart;
 	}
 
-	generateColorSet(colors: any[]): any[] {
-		const colorSet = colors.map(color => {
+	generateColorSet(): any[] {
+		const colorSet = this.colorSet.map(color => {
 			return am4core.color(color);
 		});
 		return colorSet;
