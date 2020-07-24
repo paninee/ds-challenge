@@ -4,7 +4,7 @@ import { PieChart } from './../../util/pie.chart';
 @Component({
   selector: 'app-acquisition-chart',
   template: `
-  	<div [id]="chartId" style="width: 100%; height: 500px"></div>
+  	<div [id]="chartId" class="pie-chart"></div>
   `
 })
 export class AcquisitionChartComponent extends PieChart implements AfterViewInit, OnDestroy {

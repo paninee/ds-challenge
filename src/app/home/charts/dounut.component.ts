@@ -7,7 +7,7 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-dounut',
   template: `
-  	<div [id]="chartId" style="width: 100%; height: 500px"></div>
+  	<div [id]="chartId" class="pie-chart"></div>
   `
 })
 export class DounutComponent implements AfterViewInit, OnDestroy {
