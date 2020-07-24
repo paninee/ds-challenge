@@ -36,10 +36,10 @@ export class HomeComponent implements OnDestroy {
     this.reportsMetaData = {
       newCases: this.appService.formatNumber(dt.newCases(filters)),
       threatLevel: dt.threatLevel(filters),
-      ages: dt.ages(filters).map(x => { return {value: x.count, label: x.Age_Group}; }),
-      acquisition: dt.acquisitions(filters).map(x => { return {value: x.count, label: x.Case_AcquisitionInfo}; }),
-      outbreakRelates: dt.outbreakRelates(filters).map(x => { return {value: x.count, label: x.Outbreak_Related}; })
-    }
+      ages: dt.ages(filters),
+      acquisition: dt.acquisitions(filters),
+      outbreakRelates: dt.outbreakRelates(filters)
+    };
   }
 
   initiateForm(): void {

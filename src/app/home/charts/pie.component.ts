@@ -3,6 +3,7 @@ import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
+import { DSPieChartClass } from './../../util/pie.chart';
 
 @Component({
   selector: 'app-pie',
@@ -10,11 +11,10 @@ am4core.useTheme(am4themes_animated);
   	<div [id]="chartId" style="width: 100%; height: 500px"></div>
   `
 })
-export class PieComponent implements AfterViewInit, OnDestroy {
+export class PieComponent extends DSPieChartClass implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() data: any[] = [];
-	private chart: am4charts.PieChart;
-	public am4charts: any;
+  @Input() dataFields: {value: any, category: string};
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -22,29 +22,12 @@ export class PieComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(private zone: NgZone) {
-  	this.am4charts = am4charts;
+    super();
   }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create(this.chartId, am4charts.PieChart);
-
-			// Add data
-			chart.data = this.data;
-
-			// Add and configure Series
-			var pieSeries = chart.series.push(new am4charts.PieSeries());
-			pieSeries.dataFields.value = "value";
-			pieSeries.dataFields.category = "label";
-
-			pieSeries.ticks.template.disabled = true;
-			pieSeries.alignLabels = false;
-			pieSeries.labels.template.text = "[bold]{category}\n{value.percent.formatNumber('#.0')}%[/]";
-			pieSeries.labels.template.radius = am4core.percent(-40);
-      pieSeries.labels.template.fontSize = '20px';
-			pieSeries.labels.template.fill = am4core.color("white");
-
-      this.chart = chart;
+      this.createChart();
     });
   }
 
