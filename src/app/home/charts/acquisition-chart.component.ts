@@ -19,6 +19,12 @@ export class AcquisitionChartComponent extends PieChart implements AfterViewInit
 
   constructor(private zone: NgZone) {
     super();
+    this.colorSet = [
+      '#F1C27D',
+      '#abacac',
+      '#9f1827',
+      '#68C9F7'
+    ];
   }
 
   ngAfterViewInit() {
