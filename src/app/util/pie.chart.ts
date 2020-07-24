@@ -3,7 +3,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
-export class DSPieChartClass {
+export class PieChartParentClass {
 	private am4Charts: any;
 	public chart: am4charts.PieChart;
 	public chartId: string;
@@ -31,7 +31,7 @@ export class DSPieChartClass {
 		pieSeries.labels.template.radius = am4core.percent(-40);
     pieSeries.labels.template.fontSize = '20px';
 		pieSeries.labels.template.fill = am4core.color("white");
-		
+
 		this.chart = chart;
 	}
 }
