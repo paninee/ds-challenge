@@ -35,6 +35,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			axis.max = chartMax;
 			axis.strictMinMax = true;
 			axis.renderer.labels.template.disabled = true;
+			axis.renderer.grid.template.disabled = true;
 
 			const data = {
 			  score: this.threatLevel.score,
@@ -95,7 +96,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			hand.pin.disabled = true;
 			hand.value = this.threatLevel.score;
 			hand.fill = am4core.color("#444");
-			hand.stroke = am4core.color("#000");
+			hand.stroke = am4core.color("#444");
 
       this.chart = chart;
     });
