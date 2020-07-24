@@ -23,7 +23,8 @@ export class AgeChartComponent extends PieChartParentClass implements AfterViewI
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      this.createChart();
+      const colorSet = ['red', 'blue', 'green', 'black', 'pink', 'yellow', 'red', 'blue', 'green', 'pink'];
+      this.createChart(colorSet);
     });
   }
 
