@@ -41,8 +41,10 @@ export class HomeComponent implements OnDestroy {
       threatLevel: dt.threatLevel(filters),
       ages: dt.ages(filters),
       acquisition: dt.acquisitions(filters),
-      outbreakRelates: dt.outbreakRelates(filters)
+      outbreakRelates: dt.outbreakRelates(filters),
+      genders: dt.genders(filters)
     };
+    console.log(this.reportsMetaData.genders);
   }
 
   initiateForm(): void {
