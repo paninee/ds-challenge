@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng5SliderModule } from 'ng5-slider';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { CountUpDirective } from './../util/directive/count-up.directive';
 import { HomeComponent } from './home.component';
 import { GaugeComponent } from './charts/gauge.component';
 import { DounutComponent } from './charts/dounut.component';
@@ -12,7 +13,7 @@ import { AcquisitionChartComponent } from './charts/acquisition-chart.component'
 import { OutbreakChartComponent } from './charts/outbreak-chart.component';
 
 @NgModule({
-  declarations: [HomeComponent, GaugeComponent, DounutComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent],
+  declarations: [HomeComponent, GaugeComponent, DounutComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent, CountUpDirective],
   imports: [
     CommonModule,
     HomeRoutingModule,

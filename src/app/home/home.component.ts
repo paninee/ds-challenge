@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AppService } from './../util/app.service';
 import { DataTransformation } from './../util/data-transform';
 import { FilterInterface } from './../util/interface';
+import { CountUp, CountUpOptions } from 'countup.js';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,8 @@ export class HomeComponent implements OnDestroy {
   public searchForm: FormGroup;
   public selectOptions: {acquisition: any, outcome: any};
   public records: any;
+  public countOpts: CountUpOptions = {duration: 5};
+
 	
   constructor(
     private fb: FormBuilder,
@@ -34,7 +37,7 @@ export class HomeComponent implements OnDestroy {
     const data = this.records;
     const dt = new DataTransformation(data);
     this.reportsMetaData = {
-      newCases: this.appService.formatNumber(dt.newCases(filters)),
+      newCases: dt.newCases(filters),
       threatLevel: dt.threatLevel(filters),
       ages: dt.ages(filters),
       acquisition: dt.acquisitions(filters),

@@ -97,7 +97,7 @@
       </div>
       <div class="col-lg-6 cases">
         <div class="d-block text-center">
-          <span class="light-orange-color count">{{reportsMetaData.newCases}}</span><br>
+          <span class="light-orange-color count" [countUp]="reportsMetaData.newCases" [options]="countOpts">0</span><br>
           <span class="light-orange-color label"><b>new cases</b></span><br>
           <span class="light-orange-color sub-label">(past 7 days)</span>
         </div>
