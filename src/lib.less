@@ -6,8 +6,15 @@
 @yellow-color: #fdd835;
 
 /* ------------- [START General variables] ------------- */
+@mobile-small-screen:~"only screen and (max-width: 320px)";
+@mobile-semi-small-screen:~"only screen and (max-width: 390px)";
 @mobile-screen:~"only screen and (max-width: 767px) and (max-aspect-ratio: 13/9)";
 @mobile-lanscape-screen:~"only screen and (min-width: 415px) and (max-width: 823px) and (min-aspect-ratio: 13/9)";
+@iphonex-landscape-screen:~"only screen and (min-width: 300px) and (max-width: 812px) and (min-aspect-ratio: 13/9)";
+@iphonex-portrait-screen:~"only screen and (max-width: 375px) and (max-height: 812px) and (orientation : portrait)";
+@iphone5-landscape-screen:~"only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2)";
+@iphone5-portrait-screen:~"only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2)";
+@iphone-lanscape-screen:~"only screen and (min-width: 415px) and (max-width: 850px)";
 @tablet:~"only screen and (min-width: 768px) and (max-width: 1024px)";
 @tablet-portait-screen:~"only screen and (min-width: 768px) and (max-width: 991px) and (max-aspect-ratio: 13/9)";
 @tablet-landscape-screen:~"only screen and (min-width: 992px) and (max-width: 1024px)";
@@ -24,6 +31,14 @@
 @mobile-fixed-height:~"only screen and (max-height: 321px) and (min-height: 320px)";
 @mobile-fixed-height-rotateX:~"only screen and (max-height: 413px) and (min-height: 320px)";
 @mobile-fixed-height-rotate:~"only screen and (max-height: 420px) and (min-height: 414px)";
+@mobile-fixed-ipadpro:~"only screen and (max-height: 1370px) and (min-height: 1366px)";
+@ipad-portrait:~"only screen and (max-device-width: 1024px) and (min-device-width: 768px) and (orientation : portrait)";
+@ipad-landscape:~"only screen and (max-device-width: 1024px) and (min-device-width: 768px) and (orientation : landscape)";
+
+// https://kapeli.com/cheat_sheets/iOS_Design.docset/Contents/Resources/Documents/index
+@ipad-pro-landscape:~"only screen and (min-width: 1112px) and (min-height: 834px)";
+@ipad-pro-portrait:~"only screen and (min-height: 1112px) and (min-width: 834px)";
+
 
 @bs-sm:~"(min-width: 576px)";
 @bs-md:~"(min-width: 768px)";

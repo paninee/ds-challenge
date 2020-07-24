@@ -44,8 +44,35 @@
 		}
 	}
 	.gender-list {
+    width: 90%;
+    margin: 0 auto;
+    padding: 5rem 0;
+		.male {
+			i {
+				color: blue;
+			}
+		}
+		.female {
+			i {
+				color: pink;
+			}
+		}
+		.other {
+			i {
+				color: @grey-color
+			}
+		}
 		i {
-			font-size: 30px;
+			font-size: 5rem;
+		}
+		.col {
+			@media @mobile-screen,
+	    @mobile-lanscape-screen,
+	    @iphonex-landscape-screen,
+	    @tablet-portait-screen {
+				flex:  0 0 25%;
+				padding: 0;
+			}
 		}
 	}
 }
