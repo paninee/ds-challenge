@@ -1,5 +1,5 @@
 import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
-import { PieChartParentClass } from './../../util/pie.chart';
+import { PieChart } from './../../util/pie.chart';
 
 @Component({
   selector: 'app-age-chart',
@@ -7,7 +7,7 @@ import { PieChartParentClass } from './../../util/pie.chart';
   	<div [id]="chartId" style="width: 100%; height: 500px"></div>
   `
 })
-export class AgeChartComponent extends PieChartParentClass implements AfterViewInit, OnDestroy {
+export class AgeChartComponent extends PieChart implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() data: any[] = [];
   @Input() dataFields: {value: any, category: string};

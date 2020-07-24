@@ -3,7 +3,7 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
-export class PieChartParentClass {
+export class PieChart {
 	private am4Charts: any;
 	public chart: am4charts.PieChart;
 	public chartId: string;
