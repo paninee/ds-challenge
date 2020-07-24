@@ -92,10 +92,10 @@
 
   <div class="charts">
     <div class="row">
-      <div class="col">
+      <div class="col-lg-6">
         <app-gauge class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-gauge>
       </div>
-      <div class="col cases">
+      <div class="col-lg-6 cases">
         <div class="d-block text-center">
           <span class="light-orange-color count">{{reportsMetaData.newCases}}</span><br>
           <span class="light-orange-color label">new cases</span><br>
@@ -104,21 +104,21 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-lg-6">
         <h3 class="text-center">Age</h3>
         <app-pie class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-pie>
       </div>
-      <div class="col">
+      <div class="col-lg-6">
         <h3 class="text-center">Acquisition</h3>
         <app-pie class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-pie>
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col-lg-6">
         <h3 class="text-center">Outcome</h3>
         <app-dounut class="w-100" [chartId]="'outcomeChart'"></app-dounut>
       </div>
-      <div class="col">
+      <div class="col-lg-6">
         <h3 class="text-center">Outbreak Related</h3>
         <app-pie class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-pie>
       </div>
