@@ -110,6 +110,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   generateGenders(genderObj: {male: number, female: number, other?: number}): void {
+    this.genders = [];
     for (const field in genderObj) {
       for (var i = 1; i <= genderObj[field]; i++) {
         this.genders.push(field);
