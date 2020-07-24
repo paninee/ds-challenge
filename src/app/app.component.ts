@@ -13,12 +13,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   	var data = this.appService.getRecords();
     var dt = new DataTransformation(data);
-    console.log(dt.threatLevel(null));
-    console.log(dt.newCases({
-      acquisition: 'Travel-Related'
-    }));
-    console.log(dt.ages(null));
-    console.log(dt.acquisitions(null));
-    console.log(dt.outbreakRelates(null));
+    // console.log(dt.threatLevel(null));
+    // console.log(dt.newCases({
+    //   acquisition: 'Travel-Related'
+    // }));
+    // console.log(dt.ages(null));
+    // console.log(dt.acquisitions(null));
+    // console.log(dt.outbreakRelates(null));
   }
 }
