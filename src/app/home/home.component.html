@@ -138,6 +138,12 @@
         <app-outbreak-chart class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak-chart>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <app-where-map [chartId]="'whereMapChart'"></app-where-map>
+      </div>
+    </div>
   </div>
 
 </div>
