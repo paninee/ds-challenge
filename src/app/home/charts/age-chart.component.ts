@@ -19,7 +19,18 @@ export class AgeChartComponent extends PieChart implements AfterViewInit, OnDest
 
   constructor(private zone: NgZone) {
     super();
-    this.colorSet = ['red', 'blue', 'green', 'black', 'pink', 'yellow', 'red', 'blue', 'green', 'pink'];
+    this.colorSet = [
+      '#263d51',
+      '#324b65',
+      '#3a647a',
+      '#4f7a95',
+      '#689ebf',
+      '#76b2d5',
+      '#69c8ed',
+      '#70d7ff',
+      '#172e34',
+      '#7b7c7c'
+    ];
   }
 
   ngAfterViewInit() {
