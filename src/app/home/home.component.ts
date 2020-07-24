@@ -34,7 +34,7 @@ export class HomeComponent implements OnDestroy {
     const data = this.records;
     const dt = new DataTransformation(data);
     this.reportsMetaData = {
-      newCases: this.appService.formatNumber(dt.newCases({acquisition: 'Travel-Related'})),
+      newCases: this.appService.formatNumber(dt.newCases(filters)),
       threatLevel: dt.threatLevel(filters),
       ages: dt.ages(filters).map(x => { return {value: x.count, label: x.Age_Group}; }),
       acquisition: dt.acquisitions(filters).map(x => { return {value: x.count, label: x.Case_AcquisitionInfo}; }),
