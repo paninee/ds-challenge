@@ -21,5 +21,6 @@ export class AppComponent implements OnInit {
     // console.log(dt.genders(null));
     // console.log(dt.outcomes(null));
     // console.log(dt.whereMap(null));
+    // console.log(dt.whenChart(null));
   }
 }

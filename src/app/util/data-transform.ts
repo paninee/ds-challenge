@@ -1,10 +1,11 @@
-import { FilterInterface } from './interface';
 /**
  * Set of utility methods to transform data according to the graphs input
  * @return JSON array;
  */
 
 import dl from 'datalib';
+import { FilterInterface } from './interface';
+import * as _ from 'lodash';
 
 export class DataTransformation {
   private data: any;
@@ -102,5 +103,28 @@ export class DataTransformation {
     let groupedData = dl.groupby(['Reporting_PHU', 'Reporting_PHU_Latitude', 'Reporting_PHU_Longitude']).count().execute(this.data);
 
     return groupedData;
+  }
+
+  public whenChart(filter: FilterInterface){
+    if(filter){
+      this.applyFilter(filter);
+    }
+
+    // let groupedData = _.groupBy(dl.groupby(['Accurate_Episode_Date', 'Outcome1']).count().execute(this.data), 'Accurate_Episode_Date');
+    let groupedData = dl.groupby(['Accurate_Episode_Date', 'Outcome1']).count().execute(this.data);
+
+    return _.reduce(groupedData, (results, d) => {
+      let existedDate = _.find(results, ['date', d.Accurate_Episode_Date]);
+      if(existedDate){
+        existedDate[d.Outcome1] = d.count;
+      } else {
+        let transformedData = {
+          date: d.Accurate_Episode_Date
+        };
+        transformedData[d.Outcome1] = d.count;
+        results.push(transformedData);
+      }
+      return results;
+    }, []);
   }
 };
