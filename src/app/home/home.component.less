@@ -29,6 +29,14 @@
 	}
 }
 .charts {
+	.col-lg-6 {
+		@media @mobile-screen,
+    @mobile-lanscape-screen,
+    @iphonex-landscape-screen,
+    @tablet-portait-screen {
+    	margin-bottom: 2rem !important;
+    }
+	}
 	.label {
 		font-size: 22px;
 	}
@@ -46,7 +54,9 @@
 	.gender-list {
     width: 90%;
     margin: 0 auto;
-    padding: 5rem 0;
+    @media @desktop-screen {
+    	padding: 5rem 0;
+    }
 		.male {
 			i {
 				color: blue;
