@@ -23,7 +23,6 @@ export class PieComponent implements AfterViewInit, OnDestroy {
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
-  	this.chartId = `app-pie-${Date.now()}`;
   }
 
   ngAfterViewInit() {
