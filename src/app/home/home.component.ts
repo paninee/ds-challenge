@@ -1,6 +1,7 @@
 import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
 import { Options } from 'ng5-slider';
 import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AppService } from './../util/app.service';
 import { DataTransformation } from './../util/data-transform';
@@ -71,9 +72,14 @@ export class HomeComponent implements OnDestroy {
 
   listenToFormChanges(): void {
     this.formChangesSubscription =
-      this.searchForm.valueChanges.subscribe(changes => {
-        console.log(changes);
-      });
+      this.searchForm.valueChanges
+        .pipe(
+          debounceTime(750),
+          distinctUntilChanged()
+        ).subscribe(changes => {
+          this.prepareFields();
+        }
+      );
   }
 
   resetFilter(): void {
@@ -86,7 +92,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   prepareFields(): void {
-    this.showAdvanceFilter = !this.showAdvanceFilter;
+    // this.showAdvanceFilter = !this.showAdvanceFilter;
     console.log(this.searchForm.value);
   }
 
