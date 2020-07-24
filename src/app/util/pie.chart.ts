@@ -29,8 +29,10 @@ export class PieChartParentClass {
 
 		let colorSet = [];
 		this.data.forEach(x => {
-			// Ex: #fff
-			colorSet.push(x.color);
+			if (x.color) {
+				// Ex: #fff
+				colorSet.push(x.color);
+			}
 		});
 		pieSeries.colors.list = colorSet;
 
