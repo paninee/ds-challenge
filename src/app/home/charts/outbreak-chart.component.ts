@@ -33,7 +33,7 @@ export class OutbreakChartComponent extends PieChart implements AfterViewInit, O
 
   generateWidth(): void {
     if (document.body.clientWidth <= 930 ) {
-      console.log(this.chart.series);
+      // console.log(this.chart.series);
     }
   }
 

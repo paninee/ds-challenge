@@ -1,4 +1,4 @@
-import { Component, NgZone, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -15,6 +15,11 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 	@Input() threatLevel: {label: string, score: number} = {label: 'n/a', score: 0};
 	private chart: am4charts.GaugeChart;
 	public am4charts: any;
+
+	@HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.responsiveHandler();
+  }
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
@@ -114,6 +119,12 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 	  }
 	  return null;
 	}
+
+	responsiveHandler(): void {
+    if (document.body.clientWidth <= 930 ) {
+      console.log(this.chart.radarContainer);
+    }
+  }
 
 
 	ngOnDestroy() {

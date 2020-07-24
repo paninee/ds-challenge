@@ -41,7 +41,7 @@ export class AgeChartComponent extends PieChart implements AfterViewInit, OnDest
 
   generateWidth(): void {
     if (document.body.clientWidth <= 930 ) {
-      console.log(this.chart.series);
+      // console.log(this.chart.series);
     }
   }
 
