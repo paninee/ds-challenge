@@ -22,7 +22,7 @@ export class HomeComponent implements OnDestroy {
   public selectOptions: {acquisition: any, outcome: any};
   public records: any;
   public countOpts: CountUpOptions = {duration: 5};
-
+  public genders: string[] = [];
 	
   constructor(
     private fb: FormBuilder,
@@ -42,9 +42,8 @@ export class HomeComponent implements OnDestroy {
       ages: dt.ages(filters),
       acquisition: dt.acquisitions(filters),
       outbreakRelates: dt.outbreakRelates(filters),
-      genders: dt.genders(filters)
+      genders: this.generateGenders(dt.genders(filters))
     };
-    console.log(this.reportsMetaData.genders);
   }
 
   initiateForm(): void {
@@ -108,6 +107,14 @@ export class HomeComponent implements OnDestroy {
 
     this.sliderOptions = {floor: 0, ceil: 100, animate: false};
     this.records = this.appService.getRecords();
+  }
+
+  generateGenders(genderObj: {male: number, female: number, other?: number}): void {
+    for (const field in genderObj) {
+      for (var i = 1; i <= genderObj[field]; i++) {
+        this.genders.push(field);
+      }
+    }
   }
 
   ngOnDestroy() {
