@@ -27,13 +27,24 @@ export class PieChartParentClass {
 		pieSeries.slices.template.stroke = am4core.color("#fff");
 		pieSeries.slices.template.strokeOpacity = 1;
 
-		let colorSet = [];
-		this.data.forEach(x => {
-			if (x.color) {
-				// Ex: #fff
-				colorSet.push(x.color);
-			}
-		});
+		let colorSet = [
+			am4core.color('red'),
+			am4core.color('blue'),
+			am4core.color('green'),
+			am4core.color('black'),
+			am4core.color('pink'),
+			am4core.color('yellow'),
+			am4core.color('red'),
+			am4core.color('blue'),
+			am4core.color('green'),
+			am4core.color('pink')
+		];
+		// this.data.forEach(x => {
+		// 	if (x.color) {
+		// 		// Ex: #fff
+		// 		colorSet.push(x.color);
+		// 	}
+		// });
 		pieSeries.colors.list = colorSet;
 
 		// This creates initial animation
