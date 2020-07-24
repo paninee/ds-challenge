@@ -30,11 +30,11 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 
 			const chartMin = 0;
 			const chartMax = 100;
-			const axis2 = chart.xAxes.push(new this.am4charts.ValueAxis());
-			axis2.min = chartMin;
-			axis2.max = chartMax;
-			axis2.strictMinMax = true;
-			axis2.renderer.labels.template.disabled = true;
+			const axis = chart.xAxes.push(new this.am4charts.ValueAxis());
+			axis.min = chartMin;
+			axis.max = chartMax;
+			axis.strictMinMax = true;
+			axis.renderer.labels.template.disabled = true;
 
 			const data = {
 			  score: this.threatLevel.score,
@@ -63,7 +63,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			};
 
 			for (let grading of data.gradingData) {
-			  var range = axis2.axisRanges.create();
+			  var range = axis.axisRanges.create();
 			  range.axisFill.fill = am4core.color(grading.color);
 			  range.axisFill.fillOpacity = 1;
 			  range.axisFill.zIndex = -1;
@@ -89,7 +89,7 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			label.fill = am4core.color(matchingGrade.color);
 
 			const hand = chart.hands.push(new am4charts.ClockHand());
-			hand.axis = axis2;
+			hand.axis = axis;
 			hand.innerRadius = am4core.percent(25);
 			hand.startWidth = 12;
 			hand.pin.disabled = true;
