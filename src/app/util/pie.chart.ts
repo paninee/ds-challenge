@@ -27,6 +27,14 @@ export class PieChartParentClass {
 		pieSeries.slices.template.stroke = am4core.color("#fff");
 		pieSeries.slices.template.strokeOpacity = 1;
 
+		pieSeries.colors.list = [
+		  am4core.color("#845EC2"),
+		  am4core.color("#D65DB1"),
+		  am4core.color("#FF6F91"),
+		  am4core.color("#FF9671"),
+		  am4core.color("#FFC75F"),
+		  am4core.color("#F9F871"),
+		];
 
 		// This creates initial animation
 		pieSeries.hiddenState.properties.opacity = 1;
