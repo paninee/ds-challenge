@@ -20,5 +20,6 @@ export class AppComponent implements OnInit {
     // console.log(dt.ages(null));
     // console.log(dt.acquisitions(null));
     // console.log(dt.outbreakRelates(null));
+    // console.log(dt.genders(null));
   }
 }
