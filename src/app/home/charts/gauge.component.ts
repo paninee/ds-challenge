@@ -7,8 +7,8 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-gauge',
   template: `
-  	<div [id]="chartId" style="width: 100%; height: 500px"></div>
-  `
+  	<div [id]="chartId" class="gauge-chart"></div>
+  `,
 })
 export class GaugeComponent implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
