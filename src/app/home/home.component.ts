@@ -1,5 +1,5 @@
 import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
-import { Options } from 'ng5-slider';
+import { Options as ng5Options} from 'ng5-slider';
 import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -14,46 +14,30 @@ import { DataTransformation } from './../util/data-transform';
 export class HomeComponent implements OnDestroy {
   private formChangesSubscription: Subscription;
   public reportsMetaData: any;
-
 	public showAdvanceFilter: boolean;
-  public sliderOptions: Options = {
-    floor: 0,
-    ceil: 100,
-    animate: false
-  };
+  public sliderOptions: ng5Options;
   public searchForm: FormGroup;
   public selectOptions: {acquisition: any, outcome: any};
+  public records: any;
 	
   constructor(
     private fb: FormBuilder,
     public appService: AppService
   ) {
+    this.generateDefaultValues();
     this.initiateForm();
-    this.selectOptions = {
-      acquisition: [
-        {key: 'Contact of a confirmed case', name: 'Contact of a confirmed case'},
-        {key: 'Travel-Related', name: 'Travel-Related'},
-        {key: 'Information pending', name: 'Information pending'},
-        {key: 'Neither', name: 'Neither'}
-      ],
-      outcome: [
-        {key: 'Resolved', name: 'Resolved'},
-        {key: 'Not Resolved', name: 'Not Resolved'},
-        {key: 'Fatal', name: 'Fatal'}
-      ]
-    };
     this.generateReports();
   }
 
-  generateReports(): void {
-    const data = this.appService.getRecords();
+  generateReports(filters: any = {}): void {
+    const data = this.records;
     const dt = new DataTransformation(data);
     this.reportsMetaData = {
       newCases: this.appService.formatNumber(dt.newCases({acquisition: 'Travel-Related'})),
-      threatLevel: dt.threatLevel(null),
-      ages: dt.ages(null).map(x => { return {value: x.count, label: x.Age_Group}; }),
-      acquisition: dt.acquisitions(null).map(x => { return {value: x.count, label: x.Case_AcquisitionInfo}; }),
-      outbreakRelates: dt.outbreakRelates(null).map(x => { return {value: x.count, label: x.Outbreak_Related}; })
+      threatLevel: dt.threatLevel(filters),
+      ages: dt.ages(filters).map(x => { return {value: x.count, label: x.Age_Group}; }),
+      acquisition: dt.acquisitions(filters).map(x => { return {value: x.count, label: x.Case_AcquisitionInfo}; }),
+      outbreakRelates: dt.outbreakRelates(filters).map(x => { return {value: x.count, label: x.Outbreak_Related}; })
     }
   }
 
@@ -62,7 +46,7 @@ export class HomeComponent implements OnDestroy {
       gender: [''],
       acquisition: [''],
       outcome: [''],
-      outbreakRelated: true,
+      isOutbreakRelated: true,
       minAge: [30],
       maxAge: [60]
     });
@@ -77,7 +61,7 @@ export class HomeComponent implements OnDestroy {
           debounceTime(750),
           distinctUntilChanged()
         ).subscribe(changes => {
-          this.prepareFields();
+          this.generateReports(changes);
         }
       );
   }
@@ -87,13 +71,11 @@ export class HomeComponent implements OnDestroy {
       gender: '',
       acquisition: '',
       outcome: '',
-      outbreakRelated: true
+      outbreakRelated: true,
+      minAge: [30],
+      maxAge: [60]
     });
-  }
-
-  prepareFields(): void {
-    // this.showAdvanceFilter = !this.showAdvanceFilter;
-    console.log(this.searchForm.value);
+    this.generateReports();
   }
 
   updateForm(field: string, value: string): void {
@@ -101,7 +83,25 @@ export class HomeComponent implements OnDestroy {
     if (formControl) {
       formControl.setValue(value);
     }
+  }
 
+  generateDefaultValues(): void {
+    this.selectOptions = {
+      acquisition: [
+        {key: 'Contact of a confirmed case', name: 'Contact of a confirmed case'},
+        {key: 'Travel-Related', name: 'Travel-Related'},
+        {key: 'Information pending', name: 'Information pending'},
+        {key: 'Neither', name: 'Neither'}
+      ],
+      outcome: [
+        {key: 'Resolved', name: 'Resolved'},
+        {key: 'Not Resolved', name: 'Not Resolved'},
+        {key: 'Fatal', name: 'Fatal'}
+      ]
+    };
+
+    this.sliderOptions = {floor: 0, ceil: 100, animate: false};
+    this.records = this.appService.getRecords();
   }
 
   ngOnDestroy() {

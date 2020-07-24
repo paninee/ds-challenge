@@ -2,7 +2,7 @@
   <h1 class="text-center main-title m-0">COVID-19 IN ONTARIO, CANADA</h1>
 
   <div class="search-form">
-    <form [formGroup]="searchForm" (submit)="prepareFields()">
+    <form [formGroup]="searchForm">
       <div class="d-flex">
         <div class="d-flex with-icon-left form-group flex-grow-1 mr-1">
           <input type="text" class="form-control" placeholder="Your Current Location">
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-check form-group">
-          <input class="form-check-input" type="checkbox" id="outbreakRelatedCheckBox" formControlName="outbreakRelated">
+          <input class="form-check-input" type="checkbox" id="outbreakRelatedCheckBox" formControlName="isOutbreakRelated">
           <label class="form-check-label" for="outbreakRelatedCheckBox">
             Outbreak Related
           </label>
