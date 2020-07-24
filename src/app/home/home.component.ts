@@ -1,5 +1,6 @@
 import { Component, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
 import { Options } from 'ng5-slider';
+import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AppService } from './../util/app.service';
 import { DataTransformation } from './../util/data-transform';
@@ -9,12 +10,11 @@ import { DataTransformation } from './../util/data-transform';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.less']
 })
-export class HomeComponent {
+export class HomeComponent implements OnDestroy {
+  private formChangesSubscription: Subscription;
   public reportsMetaData: any;
 
 	public showAdvanceFilter: boolean;
-	public sliderValue: number = 30;
-  public sliderHighValue: number = 60;
   public sliderOptions: Options = {
     floor: 0,
     ceil: 100,
@@ -61,12 +61,19 @@ export class HomeComponent {
       gender: [''],
       acquisition: [''],
       outcome: [''],
-      outbreakRelated: true
+      outbreakRelated: true,
+      minAge: [30],
+      maxAge: [60]
     });
+
+    this.listenToFormChanges();
   }
 
-  selectGender(gender: string): void {
-    this.searchForm.get('gender').setValue(gender);
+  listenToFormChanges(): void {
+    this.formChangesSubscription =
+      this.searchForm.valueChanges.subscribe(changes => {
+        console.log(changes);
+      });
   }
 
   resetFilter(): void {
@@ -81,5 +88,19 @@ export class HomeComponent {
   prepareFields(): void {
     this.showAdvanceFilter = !this.showAdvanceFilter;
     console.log(this.searchForm.value);
+  }
+
+  updateForm(field: string, value: string): void {
+    const formControl = this.searchForm.get(field);
+    if (formControl) {
+      formControl.setValue(value);
+    }
+
+  }
+
+  ngOnDestroy() {
+    if (this.formChangesSubscription) {
+      this.formChangesSubscription.unsubscribe();
+    }
   }
 }
