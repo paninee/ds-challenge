@@ -35,7 +35,7 @@ export class PieComponent implements AfterViewInit, OnDestroy {
 
 			pieSeries.ticks.template.disabled = true;
 			pieSeries.alignLabels = false;
-			pieSeries.labels.template.text = "[bold]{category}\n{value.percent.formatNumber('#.0')}%[/]";
+			pieSeries.labels.template.text = "[bold font-size: 20px]{category}\n{value.percent.formatNumber('#.0')}%[/]";
 			pieSeries.labels.template.radius = am4core.percent(-40);
 			pieSeries.labels.template.fill = am4core.color("white");
 
