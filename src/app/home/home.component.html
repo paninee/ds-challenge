@@ -15,7 +15,7 @@
 
       <div class="advance-filter" [ngClass]="{'d-block': showAdvanceFilter, 'd-none': !showAdvanceFilter}">
         <div class="form-group-items">
-          <div class="form-group">
+          <div class="form-group pr-1">
             <div class="with-icon-left">
               <input type="text" class="form-control" placeholder="From">
                 <div class="icon-container">
@@ -24,7 +24,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group pr-1">
             <div class="with-icon-left">
               <input type="text" class="form-control" placeholder="To">
               <div class="icon-container">
@@ -34,10 +34,12 @@
           </div>
 
           <div class="form-group">
-            <select class="form-control" formControlName="acquisition">
-              <option value="">Acquisition</option>
-              <option *ngFor="let item of selectOptions.acquisition; let i = index; trackBy: appService.trackByFn;" [value]="item.key">{{item.name}}</option>
-            </select>
+            <div class="pr-1">
+              <select class="form-control" formControlName="acquisition">
+                <option value="">Acquisition</option>
+                <option *ngFor="let item of selectOptions.acquisition; let i = index; trackBy: appService.trackByFn;" [value]="item.key">{{item.name}}</option>
+              </select>
+            </div>
           </div>
 
           <div class="form-group outcome-form-group">
@@ -57,7 +59,7 @@
               (highValueChange)="updateForm('maxAge', $event)"></ng5-slider>
           </div>
 
-          <div class="form-group gender">
+          <div class="form-group gender-form-group">
             <label class="d-block text-center m-0">Gender</label>
             <div class="d-flex">
               <button [ngClass]="{'selected': searchForm.get('gender').value == 'female'}" class="flex-grow-1" type="button" (click)="updateForm('gender', 'female')"><i class="fas fa-female"></i></button>
