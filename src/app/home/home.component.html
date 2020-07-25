@@ -104,11 +104,11 @@
   <h3 class="mt-3 light-orange-color text-center chart-label">Current COVID-19 threat level in within 25km radius of your location is high.</h3>
 
   <div class="charts">
-    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
+    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item middle-aligned">
       <app-gauge class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-gauge>
     </div>
 
-    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item cases">
+    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item cases middle-aligned">
       <div class="d-block text-center">
         <span class="light-orange-color count" [countUp]="reportsMetaData.newCases" [options]="countOpts">0</span><br>
         <span class="light-orange-color label"><b>new cases</b></span><br>
@@ -133,12 +133,12 @@
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
       <h3 class="text-center">Outcome</h3>
-      <app-dounut class="w-100" [chartId]="'outcomeChart'" [data]="reportsMetaData.outcomes"></app-dounut>
+      <app-outcome class="w-100" [chartId]="'outcomeChart'" [data]="reportsMetaData.outcomes"></app-outcome>
     </div>
 
-    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
-      <div class="col-12"><h3 class="text-center mb-3">Gender</h3></div>
+    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item middle-aligned">
       <div class="row gender-list">
+        <div class="col-12"><h3 class="text-center mb-3">Gender</h3></div>
         <div class="col text-center" *ngFor="let item of genders; let i = index; trackBy: appService.trackByFn;" [ngClass]="item">
           <i class="fas fa-male" [ngClass]="'fa-'+item"></i>
         </div>

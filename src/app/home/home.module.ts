@@ -7,7 +7,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { CountUpDirective } from './../util/directive/count-up.directive';
 import { HomeComponent } from './home.component';
 import { GaugeComponent } from './charts/gauge.component';
-import { DounutComponent } from './charts/dounut.component';
+import { OutcomeComponent } from './charts/outcome.component';
 import { AgeChartComponent } from './charts/age-chart.component';
 import { AcquisitionChartComponent } from './charts/acquisition-chart.component';
 import { OutbreakChartComponent } from './charts/outbreak-chart.component';
@@ -15,7 +15,7 @@ import { WhereMapComponent } from './charts/where-map.component';
 import { WhenChartComponent } from './charts/when-chart.component';
 
 @NgModule({
-  declarations: [HomeComponent, GaugeComponent, DounutComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent, CountUpDirective, WhereMapComponent, WhenChartComponent],
+  declarations: [HomeComponent, GaugeComponent, OutcomeComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent, CountUpDirective, WhereMapComponent, WhenChartComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
