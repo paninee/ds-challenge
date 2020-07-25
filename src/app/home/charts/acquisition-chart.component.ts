@@ -21,7 +21,7 @@ export class AcquisitionChartComponent extends PieChart implements AfterViewInit
     super();
     this.colorSet = [
       '#F1C27D',
-      '#abacac',
+      '#6C6C6C',
       '#9f1827',
       '#68C9F7'
     ];

@@ -40,6 +40,12 @@ export class OutcomeComponent implements AfterViewInit, OnDestroy {
 			pieSeries.alignLabels = false;
 			pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
 
+      pieSeries.colors.list = [
+        am4core.color('#E92036'),
+        am4core.color('#6C6C6C'),
+        am4core.color('#0CA65C')
+      ];
+
 			const label = pieSeries.createChild(am4core.Label);
 			label.text = `${this.data.fatalPercentage}%`;
 			label.horizontalCenter = "middle";
