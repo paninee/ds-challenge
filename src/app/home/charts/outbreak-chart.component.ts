@@ -5,7 +5,8 @@ import { PieChart } from './../../util/pie.chart';
   selector: 'app-outbreak-chart',
   template: `
   	<div [id]="chartId" class="pie-chart"></div>
-  `
+  `,
+  styles: [`div {height: 200px;}`]
 })
 export class OutbreakChartComponent extends PieChart implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;

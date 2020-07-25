@@ -104,57 +104,55 @@
   <h3 class="mt-3 light-orange-color text-center chart-label">Current COVID-19 threat level in within 25km radius of your location is high.</h3>
 
   <div class="charts">
-    <div class="row">
-      <div class="col-lg-6">
-        <app-gauge class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-gauge>
+    <div class="chart-item">
+      <app-gauge class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-gauge>
+    </div>
+
+    <div class="chart-item cases">
+      <div class="d-block text-center">
+        <span class="light-orange-color count" [countUp]="reportsMetaData.newCases" [options]="countOpts">0</span><br>
+        <span class="light-orange-color label"><b>new cases</b></span><br>
+        <span class="light-orange-color sub-label">(past 7 days)</span>
       </div>
-      <div class="col-lg-6 cases">
-        <div class="d-block text-center">
-          <span class="light-orange-color count" [countUp]="reportsMetaData.newCases" [options]="countOpts">0</span><br>
-          <span class="light-orange-color label"><b>new cases</b></span><br>
-          <span class="light-orange-color sub-label">(past 7 days)</span>
+    </div>
+
+    <div class="chart-item">
+      <h3 class="text-center">Age</h3>
+      <app-age-chart class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-age-chart>
+    </div>
+
+    <div class="chart-item">
+      <h3 class="text-center">Acquisition</h3>
+      <app-acquisition-chart class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-acquisition-chart>
+    </div>
+
+    <div class="chart-item">
+      <h3 class="text-center">Outbreak Related</h3>
+      <app-outbreak-chart class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak-chart>
+    </div>
+
+    <div class="chart-item">
+      <h3 class="text-center">Outcome</h3>
+      <app-dounut class="w-100" [chartId]="'outcomeChart'" [data]="reportsMetaData.outcomes"></app-dounut>
+    </div>
+
+    <div class="chart-item">
+      <div class="col-12"><h3 class="text-center mb-3">Gender</h3></div>
+      <div class="row gender-list">
+        <div class="col text-center" *ngFor="let item of genders; let i = index; trackBy: appService.trackByFn;" [ngClass]="item">
+          <i class="fas fa-male" [ngClass]="'fa-'+item"></i>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-lg-6">
-        <h3 class="text-center">Age</h3>
-        <app-age-chart class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-age-chart>
-      </div>
-      <div class="col-lg-6">
-        <h3 class="text-center">Acquisition</h3>
-        <app-acquisition-chart class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-acquisition-chart>
-      </div>
+
+    <div class="chart-item">
+      <h3 class="text-center">Where</h3>
+      <app-where-map [chartId]="'whereMapChart'" [data]="reportsMetaData.map"></app-where-map>
     </div>
 
-    <div class="row gender-list">
-      <div class="col-12"><h3 class="text-center mb-3">Gender</h3></div>
-      <div class="col text-center" *ngFor="let item of genders; let i = index; trackBy: appService.trackByFn;" [ngClass]="item">
-        <i class="fas fa-male" [ngClass]="'fa-'+item"></i>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-6">
-        <h3 class="text-center">Outcome</h3>
-        <app-dounut class="w-100" [chartId]="'outcomeChart'" [data]="reportsMetaData.outcomes"></app-dounut>
-      </div>
-      <div class="col-lg-6">
-        <h3 class="text-center">Outbreak Related</h3>
-        <app-outbreak-chart class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak-chart>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-6">
-        <h3 class="text-center">Where</h3>
-        <app-where-map [chartId]="'whereMapChart'" [data]="reportsMetaData.map"></app-where-map>
-      </div>
-      <div class="col-lg-6">
-        <h3 class="text-center">When</h3>
-        <app-where-chart [chartId]="'whereChart'" [data]="reportsMetaData.whenChart"></app-where-chart>
-      </div>
+    <div class="chart-item">
+      <h3 class="text-center">When</h3>
+      <app-where-chart [chartId]="'whereChart'" [data]="reportsMetaData.whenChart"></app-where-chart>
     </div>
   </div>
-
 </div>

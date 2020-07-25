@@ -82,14 +82,14 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 			  range.label.inside = true;
 			  range.label.radius = am4core.percent(10);
 			  range.label.paddingBottom = -5; // ~half font size
-			  range.label.fontSize = "0.9em";
+			  range.label.fontSize = "15px";
 			}
 
 			const matchingGrade = this.lookUpGrade(data.score, data.gradingData);
 
 			const label = chart.radarContainer.createChild(am4core.Label);
 			label.isMeasured = false;
-			label.fontSize = "2em";
+			label.fontSize = "15px";
 			label.horizontalCenter = "middle";
 			label.verticalCenter = "bottom";
 			label.text = `${this.threatLevel.label.toUpperCase()} RISK`;
@@ -123,9 +123,9 @@ export class GaugeComponent implements AfterViewInit, OnDestroy {
 	}
 
 	responsiveHandler(): void {
-		this.radarContainerLabel.fontSize = "2rem";
+		this.radarContainerLabel.fontSize = "15px";
     if (document.body.clientWidth <= 930 ) {
-      this.radarContainerLabel.fontSize = "1rem";
+      // this.radarContainerLabel.fontSize = "1rem";
     }
   }
 
