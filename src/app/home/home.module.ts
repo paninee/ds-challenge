@@ -12,9 +12,10 @@ import { AgeChartComponent } from './charts/age-chart.component';
 import { AcquisitionChartComponent } from './charts/acquisition-chart.component';
 import { OutbreakChartComponent } from './charts/outbreak-chart.component';
 import { WhereMapComponent } from './charts/where-map.component';
+import { WhereChartComponent } from './charts/where-chart.component';
 
 @NgModule({
-  declarations: [HomeComponent, GaugeComponent, DounutComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent, CountUpDirective, WhereMapComponent],
+  declarations: [HomeComponent, GaugeComponent, DounutComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent, CountUpDirective, WhereMapComponent, WhereChartComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

@@ -8,9 +8,9 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-where-map',
   template: `
-    <div [id]="chartId" class="gauge-chart"></div>
+    <div [id]="chartId" class="map-chart"></div>
   `,
-  styles: [`div {height: 1000px}`]
+  styles: [`div {height: 500px}`]
 })
 export class WhereMapComponent implements AfterViewInit, OnDestroy {
   @Input() chartId: string;
