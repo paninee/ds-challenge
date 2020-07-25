@@ -28,24 +28,8 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
       // Create map instance
-      let chart = am4core.create(this.chartId, am4maps.MapChart);
-
-      // Set map definition
-      chart.geodata = am4geodata_region_canada_onLow;
-
-      // Set projection
-      chart.projection = new am4maps.projections.Miller();
-
-      // Create map polygon series
-      let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
-      polygonSeries.useGeodata = true;
-      polygonSeries.calculateVisualCenter = true;
-
-      // Configure series
-      let polygonTemplate = polygonSeries.mapPolygons.template;
-      // polygonTemplate.tooltipText = "{CDNAME}";
-      polygonTemplate.fill = chart.colors.getIndex(0);
-
+      const chart = am4core.create(this.chartId, am4maps.MapChart);
+      
       // Creates a series
       const createSeries = () => {
         let series = chart.series.push(new am4maps.MapImageSeries());
@@ -99,6 +83,28 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
 
         imageSeries.data = seriesData;
       }
+
+      // Set map definition
+      chart.geodata = am4geodata_region_canada_onLow;
+
+      // Set projection
+      chart.projection = new am4maps.projections.Miller();
+
+      chart.homeZoomLevel = 5;
+      chart.homeGeoPoint = {
+        latitude: 43.65659125,
+        longitude: -79.37935801
+      };
+
+      // Create map polygon series
+      let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+      polygonSeries.useGeodata = true;
+      polygonSeries.calculateVisualCenter = true;
+
+      // Configure series
+      let polygonTemplate = polygonSeries.mapPolygons.template;
+      // polygonTemplate.tooltipText = "{CDNAME}";
+      polygonTemplate.fill = chart.colors.getIndex(0);
 
       // Load data when map polygons are ready
       chart.events.on("ready", setupStores);
