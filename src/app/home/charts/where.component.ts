@@ -92,7 +92,7 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
       chart.homeZoomLevel = 5;
       chart.homeGeoPoint = {
         latitude: 43.65659125,
-        longitude: -79.37935801
+        longitude: -80.37935801
       };
 
       // Create map polygon series
