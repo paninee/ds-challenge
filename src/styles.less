@@ -9,7 +9,10 @@ html {
   margin: 0;
 }
 body {
-  padding: 7px;
+  padding: 10px 2%;
+  @media @mobile-screen {
+    padding: 7px;
+  }
   font-family: @font-family, sans-serif;
   font-size: 15px;
 }
@@ -53,7 +56,7 @@ ng5-slider {
 }
 
 // Bootstrap overwrite
-.container {
+.container, .container-fluid {
   padding: 0;
 }
 
