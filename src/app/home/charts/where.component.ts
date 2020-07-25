@@ -28,7 +28,7 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
       // Create map instance
       const chart = am4core.create(this.chartId, am4maps.MapChart);
-      
+
       // Creates a series
       const createSeries = () => {
         let series = chart.series.push(new am4maps.MapImageSeries());
@@ -63,12 +63,12 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
         });
 
         return series;
-      }
+      };
 
       const setupStores = () => {
         const imageSeries = createSeries();
         var seriesData = [];
-        
+
         am4core.array.each(this.data, (storeData: any) => {
           let store = {
             long: am4core.type.toNumber(storeData.Reporting_PHU_Longitude),
@@ -81,7 +81,7 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
         });
 
         imageSeries.data = seriesData;
-      }
+      };
 
       // Set map definition
       chart.geodata = am4geodata_region_canada_onLow;
@@ -114,7 +114,7 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
 
   responsiveHandler(): void {
     if (document.body.clientWidth <= 930 ) {
-      
+
     }
   }
 
