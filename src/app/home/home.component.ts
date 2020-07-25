@@ -43,7 +43,8 @@ export class HomeComponent implements OnDestroy {
       acquisition: dt.acquisitions(filters),
       outbreakRelates: dt.outbreakRelates(filters),
       genders: this.generateGenders(dt.genders(filters)),
-      map: dt.whereMap(filters)
+      map: dt.whereMap(filters),
+      whenChart: dt.whenChart(filters)
     };
   }
 
