@@ -43,7 +43,7 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
 
       // Configure series
       let polygonTemplate = polygonSeries.mapPolygons.template;
-      polygonTemplate.tooltipText = "{CDNAME}";
+      // polygonTemplate.tooltipText = "{CDNAME}";
       polygonTemplate.fill = chart.colors.getIndex(0);
 
       // Creates a series
