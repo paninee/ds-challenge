@@ -117,6 +117,11 @@
     </div>
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
+      <h3 class="text-center">Outcome</h3>
+      <app-outcome class="w-100" [chartId]="'outcomeChart'" [data]="reportsMetaData.outcomes"></app-outcome>
+    </div>
+
+    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
       <h3 class="text-center">Age</h3>
       <app-age class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-age>
     </div>
@@ -129,11 +134,6 @@
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
       <h3 class="text-center">Outbreak Related</h3>
       <app-outbreak class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak>
-    </div>
-
-    <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
-      <h3 class="text-center">Outcome</h3>
-      <app-outcome class="w-100" [chartId]="'outcomeChart'" [data]="reportsMetaData.outcomes"></app-outcome>
     </div>
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item middle-aligned">
