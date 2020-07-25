@@ -23,22 +23,18 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
     this.responsiveHandler();
   }
 
-  constructor(private zone: NgZone) {
-  }
+  constructor(private zone: NgZone) {}
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
       // Create map instance
       let chart = am4core.create(this.chartId, am4maps.MapChart);
-      let regionalSeries: any = {};
-      let currentSeries;
-      chart.maxZoomLevel = 64;
 
       // Set map definition
       chart.geodata = am4geodata_region_canada_onLow;
 
       // Set projection
-      chart.projection = new am4maps.projections.AlbersUsa();
+      chart.projection = new am4maps.projections.Miller();
 
       // Create map polygon series
       let polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
