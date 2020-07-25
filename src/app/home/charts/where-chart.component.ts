@@ -7,7 +7,7 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-where-chart',
   template: `
-   <div [id]="chartId" class="graph-chart" style="height: 500px;"></div>
+   <div [id]="chartId" class="graph-chart"></div>
   `,
   styles: []
 })

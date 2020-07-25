@@ -10,7 +10,6 @@ am4core.useTheme(am4themes_animated);
   template: `
     <div [id]="chartId" class="map-chart"></div>
   `,
-  styles: [`div {height: 500px}`]
 })
 export class WhereMapComponent implements AfterViewInit, OnDestroy {
   @Input() chartId: string;
