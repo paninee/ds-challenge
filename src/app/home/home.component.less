@@ -103,7 +103,16 @@
   flex-flow: row wrap;
   align-content: space-between;
   justify-content: space-between;
-
+  .map-chart-item,
+	.when-chart-item {
+		@media @mobile-screen,
+	  @mobile-lanscape-screen,
+	  @tablet-portait-screen {
+	  	h3 {
+	  		display: none;
+	  	}
+	  }
+	}
   .chart-item {
   	flex: 0 0 33.33%;
   	&:nth-child(1) {

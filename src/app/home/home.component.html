@@ -145,12 +145,12 @@
       </div>
     </div>
 
-    <div class="chart-item" [ngClass]="{'mobile-visible': activeMobileTab == 'where'}">
+    <div class="chart-item map-chart-item" [ngClass]="{'mobile-visible': activeMobileTab == 'where'}">
       <h3 class="text-center">Where</h3>
       <app-where [chartId]="'whereMapChart'" [data]="reportsMetaData.map"></app-where>
     </div>
 
-    <div class="chart-item" [ngClass]="{'mobile-visible': activeMobileTab == 'when'}">
+    <div class="chart-item when-chart-item" [ngClass]="{'mobile-visible': activeMobileTab == 'when'}">
       <h3 class="text-center">When</h3>
       <app-when [chartId]="'whereChart'" [data]="reportsMetaData.whenChart"></app-when>
     </div>
