@@ -135,6 +135,15 @@
 			// order: 6;
 			flex: 50%;
 		}
+
+		@media @mobile-screen,
+    @mobile-lanscape-screen,
+    @tablet-portait-screen {
+    	display: none;
+    	&.mobile-visible {
+    		display: unset;
+    	}
+    }
   }
 	// .col-lg-6 {
 	// 	@media @mobile-screen,
@@ -147,9 +156,11 @@
 		font-size: 22px;
 	}
 	.cases {
-		display: flex;
-		align-items: center;
-  	justify-content: center;
+		@media @desktop-screen {
+			display: flex;
+			align-items: center;
+	  	justify-content: center;
+	  }
 		.count {
 			font-size: 50px;
     	font-weight: 700;
@@ -196,4 +207,8 @@
 			}
 		}
 	}
+}
+.button-switcher {
+	display: grid;
+	grid-template-columns: repeat(3 1fr);
 }

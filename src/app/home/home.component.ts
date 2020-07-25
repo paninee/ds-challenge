@@ -23,6 +23,7 @@ export class HomeComponent implements OnDestroy {
   public records: any;
   public countOpts: CountUpOptions = {duration: 5};
   public genders: string[] = [];
+  public activeMobileTab: string = 'summary';
 	
   constructor(
     private fb: FormBuilder,
