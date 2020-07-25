@@ -87,10 +87,16 @@
 		}
 	}
 }
-.chart-label {
-	h2 {
-
-	}
+.chart-list-title {
+	@media @mobile-screen,
+  @mobile-lanscape-screen,
+  @tablet-portait-screen {
+  	display: none;
+  	&.mobile-visible {
+  		display: block;
+  		flex: 100%;
+  	}
+  }
 }
 .charts {
 	display: flex;
