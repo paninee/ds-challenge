@@ -41,7 +41,7 @@ export class OutcomeComponent implements AfterViewInit, OnDestroy {
 			pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
 
 			const label = pieSeries.createChild(am4core.Label);
-			label.text = `${this.data.fatalPercentage}%`,
+			label.text = `${this.data.fatalPercentage}%`;
 			label.horizontalCenter = "middle";
 			label.verticalCenter = "middle";
 			label.fontSize = 20;
