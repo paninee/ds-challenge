@@ -5,13 +5,13 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 @Component({
-  selector: 'app-where-chart',
+  selector: 'app-when-chart',
   template: `
    <div [id]="chartId" class="graph-chart"></div>
   `,
   styles: []
 })
-export class WhereChartComponent implements AfterViewInit, OnDestroy {
+export class WhenChartComponent implements AfterViewInit, OnDestroy {
   @Input() chartId: string;
   @Input() data: any[] = [];
   private chart: am4charts.XYChart;
