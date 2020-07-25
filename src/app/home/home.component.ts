@@ -45,7 +45,6 @@ export class HomeComponent implements OnDestroy {
       genders: this.generateGenders(dt.genders(filters)),
       map: dt.whereMap(filters)
     };
-    console.log(this.reportsMetaData.map);
   }
 
   initiateForm(): void {
