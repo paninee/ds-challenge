@@ -49,6 +49,7 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
       // Creates a series
       const createSeries = () => {
         let series = chart.series.push(new am4maps.MapImageSeries());
+        series.dataFields.value = 'radius';
 
         let template = series.mapImages.template;
         template.verticalCenter = "middle";
@@ -58,7 +59,7 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
         template.tooltipText = "{name}:\n[bold]{count} cases[/]";
 
         let circle = template.createChild(am4core.Circle);
-        circle.radius = 10;
+        circle.radius = 20;
         circle.fillOpacity = 0.7;
         circle.verticalCenter = "middle";
         circle.horizontalCenter = "middle";
@@ -70,19 +71,28 @@ export class WhereMapComponent implements AfterViewInit, OnDestroy {
         label.verticalCenter = "middle";
         label.horizontalCenter = "middle";
         label.nonScaling = true;
+
+        series.heatRules.push({
+          target: circle,
+          property: "radius",
+          min: 10,
+          max: 30
+        });
+
         return series;
       }
 
       const setupStores = () => {
         const imageSeries = createSeries();
         var seriesData = [];
-
+        
         am4core.array.each(this.data, (storeData: any) => {
           let store = {
             long: am4core.type.toNumber(storeData.Reporting_PHU_Longitude),
             lat: am4core.type.toNumber(storeData.Reporting_PHU_Latitude),
             count: am4core.type.toNumber(storeData.count),
-            name: storeData.Reporting_PHU
+            name: storeData.Reporting_PHU,
+            radius: storeData.count.toFixed().length
           };
           seriesData.push(store);
         });
