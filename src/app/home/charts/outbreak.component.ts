@@ -2,13 +2,13 @@ import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from
 import { PieChart } from './../../util/pie.chart';
 
 @Component({
-  selector: 'app-outbreak-chart',
+  selector: 'app-outbreak',
   template: `
   	<div [id]="chartId" class="pie-chart"></div>
   `,
   styles: [`div {height: 200px;}`]
 })
-export class OutbreakChartComponent extends PieChart implements AfterViewInit, OnDestroy {
+export class OutbreakComponent extends PieChart implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() data: any[] = [];
   @Input() dataFields: {value: any, category: string};

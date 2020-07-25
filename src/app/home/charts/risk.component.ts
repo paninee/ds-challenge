@@ -5,12 +5,12 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 @Component({
-  selector: 'app-gauge',
+  selector: 'app-risk',
   template: `
   	<div [id]="chartId" class="gauge-chart"></div>
   `,
 })
-export class GaugeComponent implements AfterViewInit, OnDestroy {
+export class RiskComponent implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() threatLevel: {label: string, score: number} = {label: 'n/a', score: 0};
 	private chart: am4charts.GaugeChart;

@@ -105,7 +105,7 @@
 
   <div class="charts">
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item middle-aligned">
-      <app-gauge class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-gauge>
+      <app-risk class="w-100" [chartId]="'riskChart'" [threatLevel]="reportsMetaData.threatLevel"></app-risk>
     </div>
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item cases middle-aligned">
@@ -118,17 +118,17 @@
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
       <h3 class="text-center">Age</h3>
-      <app-age-chart class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-age-chart>
+      <app-age class="w-100" [chartId]="'agePieChart'" [data]="reportsMetaData.ages" [dataFields]="{value: 'count', category: 'Age_Group'}"></app-age>
     </div>
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
       <h3 class="text-center">Acquisition</h3>
-      <app-acquisition-chart class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-acquisition-chart>
+      <app-acquisition class="w-100" [chartId]="'acquisitionAgePieChart'" [data]="reportsMetaData.acquisition" [dataFields]="{value: 'count', category: 'Case_AcquisitionInfo'}"></app-acquisition>
     </div>
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
       <h3 class="text-center">Outbreak Related</h3>
-      <app-outbreak-chart class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak-chart>
+      <app-outbreak class="w-100" [chartId]="'outbreakChart'" [data]="reportsMetaData.outbreakRelates" [dataFields]="{value: 'count', category: 'Outbreak_Related'}"></app-outbreak>
     </div>
 
     <div [ngClass]="{'mobile-visible': activeMobileTab == 'summary'}" class="chart-item">
@@ -147,12 +147,12 @@
 
     <div class="chart-item" [ngClass]="{'mobile-visible': activeMobileTab == 'where'}">
       <h3 class="text-center">Where</h3>
-      <app-where-map [chartId]="'whereMapChart'" [data]="reportsMetaData.map"></app-where-map>
+      <app-where [chartId]="'whereMapChart'" [data]="reportsMetaData.map"></app-where>
     </div>
 
     <div class="chart-item" [ngClass]="{'mobile-visible': activeMobileTab == 'when'}">
       <h3 class="text-center">When</h3>
-      <app-when-chart [chartId]="'whereChart'" [data]="reportsMetaData.whenChart"></app-when-chart>
+      <app-when [chartId]="'whereChart'" [data]="reportsMetaData.whenChart"></app-when>
     </div>
   </div>
 </div>

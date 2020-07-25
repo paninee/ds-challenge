@@ -6,16 +6,26 @@ import { Ng5SliderModule } from 'ng5-slider';
 import { HomeRoutingModule } from './home-routing.module';
 import { CountUpDirective } from './../util/directive/count-up.directive';
 import { HomeComponent } from './home.component';
-import { GaugeComponent } from './charts/gauge.component';
+import { RiskComponent } from './charts/risk.component';
 import { OutcomeComponent } from './charts/outcome.component';
-import { AgeChartComponent } from './charts/age-chart.component';
-import { AcquisitionChartComponent } from './charts/acquisition-chart.component';
-import { OutbreakChartComponent } from './charts/outbreak-chart.component';
-import { WhereMapComponent } from './charts/where-map.component';
-import { WhenChartComponent } from './charts/when-chart.component';
+import { AgeComponent } from './charts/age.component';
+import { AcquisitionComponent } from './charts/acquisition.component';
+import { OutbreakComponent } from './charts/outbreak.component';
+import { WhereComponent } from './charts/where.component';
+import { WhenComponent } from './charts/when.component';
 
 @NgModule({
-  declarations: [HomeComponent, GaugeComponent, OutcomeComponent, AgeChartComponent, AcquisitionChartComponent, OutbreakChartComponent, CountUpDirective, WhereMapComponent, WhenChartComponent],
+  declarations: [
+  	HomeComponent,
+  	RiskComponent,
+  	OutcomeComponent,
+  	AgeComponent,
+  	AcquisitionComponent,
+  	OutbreakComponent,
+  	CountUpDirective,
+  	WhereComponent,
+  	WhenComponent
+ ],
   imports: [
     CommonModule,
     HomeRoutingModule,

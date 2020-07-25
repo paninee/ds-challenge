@@ -2,12 +2,12 @@ import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from
 import { PieChart } from './../../util/pie.chart';
 
 @Component({
-  selector: 'app-acquisition-chart',
+  selector: 'app-age',
   template: `
   	<div [id]="chartId" class="pie-chart"></div>
   `
 })
-export class AcquisitionChartComponent extends PieChart implements AfterViewInit, OnDestroy {
+export class AgeComponent extends PieChart implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() data: any[] = [];
   @Input() dataFields: {value: any, category: string};
@@ -20,10 +20,16 @@ export class AcquisitionChartComponent extends PieChart implements AfterViewInit
   constructor(private zone: NgZone) {
     super();
     this.colorSet = [
-      '#F1C27D',
-      '#6C6C6C',
-      '#9f1827',
-      '#68C9F7'
+      '#263d51',
+      '#324b65',
+      '#3a647a',
+      '#4f7a95',
+      '#689ebf',
+      '#76b2d5',
+      '#69c8ed',
+      '#70d7ff',
+      '#172e34',
+      '#7b7c7c'
     ];
   }
 

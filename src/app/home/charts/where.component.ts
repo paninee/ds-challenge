@@ -6,12 +6,12 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 @Component({
-  selector: 'app-where-map',
+  selector: 'app-where',
   template: `
     <div [id]="chartId" class="map-chart"></div>
   `,
 })
-export class WhereMapComponent implements AfterViewInit, OnDestroy {
+export class WhereComponent implements AfterViewInit, OnDestroy {
   @Input() chartId: string;
   @Input() data: any[] = []
   private chart: am4maps.MapChart;
