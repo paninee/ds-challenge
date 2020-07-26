@@ -7,7 +7,7 @@ am4core.useTheme(am4themes_animated);
 @Component({
   selector: 'app-outcome',
   template: `
-  	<div [id]="chartId" class="pie-chart"></div>
+  	<div [id]="chartId" class="donut-chart"></div>
   `
 })
 export class OutcomeComponent implements AfterViewInit, OnDestroy {

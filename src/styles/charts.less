@@ -8,19 +8,24 @@
 }
 .gauge-chart,
 .pie-chart,
+.donut-chart,
 .map-chart,
 .graph-chart {
 	padding: 1rem 0;
 }
 .pie-chart,
+.donut-chart,
 .gauge-chart {
 	height: 250px;
 }
-.graph-chart,
-.map-chart {
-	@media @mobile-screen,
-	@mobile-lanscape-screen,
-	@tablet-portait-screen {
+@media @mobile-screen,
+@mobile-lanscape-screen,
+@tablet-portait-screen {
+	.graph-chart,
+	.map-chart {
 		height: 600px;
+	}
+	.pie-chart {
+		height: 400px;
 	}
 }

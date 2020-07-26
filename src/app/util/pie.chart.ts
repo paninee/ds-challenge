@@ -28,7 +28,7 @@ export class PieChart {
 		this.pieSeries.dataFields.category = this.dataFields.category;
 		this.pieSeries.slices.template.stroke = am4core.color("#fff");
 		this.pieSeries.slices.template.strokeOpacity = 1;
-		this.pieSeries.labels.template.maxWidth = 130;
+		this.pieSeries.labels.template.maxWidth = undefined;
     this.pieSeries.labels.template.wrap = true;
 
 		// Generate color set
@@ -65,7 +65,7 @@ export class PieChart {
   	if (!this.chart.legend) {
    		this.chart.legend = new am4charts.Legend();
 			this.chart.legend.position = "bottom";
-			this.chart.legend.valueLabels.template.align = "left";
+			this.chart.legend.valueLabels.template.align = "right";
 			this.chart.legend.valueLabels.template.textAlign = "end"; 
 			this.chart.legend.itemContainers.template.paddingTop = 5;
 			this.chart.legend.itemContainers.template.paddingBottom = 5;
