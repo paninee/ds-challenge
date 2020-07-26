@@ -55,7 +55,7 @@ export class PieChart {
 	}
 
 	handleViewPortChange(): void {
-    if (document.body.clientWidth <= 930 ) {
+    if (document.body.clientWidth <= 930) {
     	this.createLegend();
     } else {
     	this.removeLegend();
