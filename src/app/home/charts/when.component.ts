@@ -30,13 +30,18 @@ export class WhenComponent implements AfterViewInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
       let chart = am4core.create(this.chartId, am4charts.XYChart);
       chart.data = this.data;
+      chart.colors.list = [
+        am4core.color('#0CA65C'),
+        am4core.color('#6C6C6C'),
+        am4core.color('#E92036')
+      ];
 
       const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
       categoryAxis.dataFields.category = "date";
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.renderer.minGridDistance = 20;
       categoryAxis.renderer.labels.template.rotation = 270;
-      categoryAxis.zoom({start: .5, end: 0.98}, true);
+      categoryAxis.zoom({start: .55, end: 0.98}, true);
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
       valueAxis.title.text = "Cases";
