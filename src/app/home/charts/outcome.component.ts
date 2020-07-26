@@ -1,8 +1,5 @@
-import { Component, NgZone, Input, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-am4core.useTheme(am4themes_animated);
+import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener, OnChanges, SimpleChanges } from '@angular/core';
+import { PieChart } from './../../util/pie.chart';
 
 @Component({
   selector: 'app-outcome',
@@ -10,66 +7,53 @@ am4core.useTheme(am4themes_animated);
   	<div [id]="chartId" class="donut-chart"></div>
   `
 })
-export class OutcomeComponent implements OnChanges, AfterViewInit, OnDestroy {
-	@Input() chartId: string;
-	@Input() data: any;
-	private chart: am4charts.PieChart;
-	public am4charts: any;
-  public label: any;
+export class OutcomeComponent extends PieChart implements OnChanges, AfterViewInit, OnDestroy {
+  private label: any;
+  @Input() chartId: string;
+  @Input() data: any[] = [];
+  @Input() fatalPercentage: any;
+  @Input() dataFields: {value: any, category: string} = {value: 'count', category: 'Outcome1'};
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.handleViewPortChange();
+  }
 
   constructor(private zone: NgZone) {
-  	this.am4charts = am4charts;
+    super();
+    this.colorSet = [
+      '#E92036',
+      '#6C6C6C',
+      '#0CA65C'
+    ];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.data.firstChange && changes.data.currentValue) {
       this.chart.data = changes.data.currentValue.data;
-      this.label.text = `${changes.data.currentValue.fatalPercentage}%`;
+      this.label.text = `${changes.fatalPercentage.currentValue}%`;
     }
   }
 
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create(this.chartId, am4charts.PieChart);
-			chart.data = this.data.data;
+      this.createChart();
+      this.chart.innerRadius = this.am4core.percent(55);
 
-			// Set inner radius
-			chart.innerRadius = am4core.percent(55);
+      const label = this.pieSeries.createChild(this.am4core.Label);
+      label.text = `${this.fatalPercentage}%`;
+      label.horizontalCenter = "middle";
+      label.verticalCenter = "bottom";
+      label.fontSize = "30px";
+      label.fill = this.am4core.color('#E92036');
+      this.label = label;
 
-			// Add and configure Series
-			const pieSeries = chart.series.push(new am4charts.PieSeries());
-			pieSeries.dataFields.value = "count";
-			pieSeries.dataFields.category = "Outcome1";
-
-			pieSeries.slices.template.stroke = am4core.color("#fff");
-			pieSeries.slices.template.strokeWidth = 3;
-			pieSeries.slices.template.strokeOpacity = 1;
-			pieSeries.ticks.template.disabled = true;
-			pieSeries.alignLabels = false;
-			pieSeries.labels.template.text = "{value.percent.formatNumber('#.0')}%";
-      pieSeries.colors.list = [
-        am4core.color('#E92036'),
-        am4core.color('#6C6C6C'),
-        am4core.color('#0CA65C')
-      ];
-
-			const label = pieSeries.createChild(am4core.Label);
-			label.text = `${this.data.fatalPercentage}%`;
-			label.horizontalCenter = "middle";
-			label.verticalCenter = "bottom";
-			label.fontSize = "30px";
-      label.fill = am4core.color('#E92036');
-
-      const label2 = pieSeries.createChild(am4core.Label);
+      const label2 = this.pieSeries.createChild(this.am4core.Label);
       label2.horizontalCenter = "middle";
       label2.verticalCenter = "top";
       label2.marginTop = 100;
       label2.fontSize = "20px";
       label2.text = "Fatal";
-      label2.fill = am4core.color('#E92036');
-
-      this.label = label;
-      this.chart = chart;
+      label2.fill = this.am4core.color('#E92036');
     });
   }
 

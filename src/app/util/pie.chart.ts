@@ -4,8 +4,9 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 am4core.useTheme(am4themes_animated);
 
 export class PieChart {
-	private am4Charts: any;
-	private pieSeries: any;
+	public pieSeries: any;
+	public am4Charts: any;
+	public am4core: any;
 	public chart: am4charts.PieChart;
 	public chartId: string;
 	public colorSet: any[] = [];
@@ -13,6 +14,7 @@ export class PieChart {
 	public dataFields: {value: any, category: string};
 
 	constructor() {
+		this.am4core = am4core;
 		this.am4Charts = am4charts;
 	}
 
