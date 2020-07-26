@@ -1,5 +1,5 @@
 <div class="home">
-  <div class="header mb-1 pb-1 px-1">
+  <div class="header mb-1">
     <h1 class="text-center main-title m-0">COVID-19 IN ONTARIO, CANADA</h1>
     <div class="search-form">
       <form [formGroup]="searchForm">
@@ -91,6 +91,8 @@
       </div>
     </div>
   </div>
+
+  
   <div class="button-switcher mt-3 d-block d-lg-none">
     <div class="btn-group d-flex">
       <button (click)="activeMobileTab = 'summary'" type="button" [ngClass]="{'btn-primary': activeMobileTab == 'summary'}" class="btn">Summary</button>
