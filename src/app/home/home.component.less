@@ -1,7 +1,6 @@
 @import './../../lib';
 
 .header {
-	padding: 5px;
 	border-radius: 5px;
 	background-image: linear-gradient(to right top, #2196f3, #6195e3, #7d95d2, #8e97c2, #9899b2, #939eb7, #8ea2bc, #89a7bf, #57b4c8, #1abfb6, #46c588, #8bc34a);
 	.search-form {
@@ -18,7 +17,9 @@
 		    justify-content: space-between;
 				.form-group {
 					flex: 0 0 25%;
-
+					label {
+						color: white !important;
+					}
 					@media @mobile-screen,
 					@mobile-lanscape-screen {
 						flex: 0 0 50%;
