@@ -38,8 +38,7 @@ export class RiskComponent implements AfterViewInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
 			let chart = am4core.create(this.chartId, am4charts.GaugeChart);
 			chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
-			chart.fontSize = 11;
-			chart.innerRadius = am4core.percent(80);
+			chart.innerRadius = am4core.percent(70);
 			chart.resizable = true;
 
 			const chartMin = 0;
@@ -85,19 +84,19 @@ export class RiskComponent implements AfterViewInit, OnDestroy {
 			  range.value = grading.lowScore > chartMin ? grading.lowScore : chartMin;
 			  range.endValue = grading.highScore < chartMax ? grading.highScore : chartMax;
 			  range.grid.strokeOpacity = 0;
-			  range.stroke = am4core.color(grading.color).lighten(-0.1);
+        range.axisFill.stroke = am4core.color("#fff");
+        range.axisFill.strokeWidth = 4;
 			  range.label.location = 0.5;
 			  range.label.inside = true;
 			  range.label.radius = am4core.percent(10);
 			  range.label.paddingBottom = -5; // ~half font size
-			  range.label.fontSize = "15px";
 			}
 
 			const matchingGrade = this.lookUpGrade(data.score, data.gradingData);
 
 			const label = chart.radarContainer.createChild(am4core.Label);
 			label.isMeasured = false;
-			label.fontSize = "15px";
+			label.fontSize = "25px";
 			label.horizontalCenter = "middle";
 			label.verticalCenter = "bottom";
 			label.text = `${this.threatLevel.label.toUpperCase()} RISK`;
@@ -107,11 +106,12 @@ export class RiskComponent implements AfterViewInit, OnDestroy {
 			const hand = chart.hands.push(new am4charts.ClockHand());
 			hand.axis = axis;
 			hand.innerRadius = am4core.percent(25);
-			hand.startWidth = 12;
+			hand.startWidth = 15;
+			hand.scale = 0.92;
 			hand.pin.disabled = true;
 			hand.value = this.threatLevel.score;
-			hand.fill = am4core.color("#444");
-			hand.stroke = am4core.color("#444");
+			hand.fill = am4core.color("#6C6C6C");
+			hand.stroke = am4core.color("#6C6C6C");
 
 			this.hand = hand;
       this.chart = chart;

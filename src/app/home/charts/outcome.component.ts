@@ -42,7 +42,7 @@ export class OutcomeComponent implements OnChanges, AfterViewInit, OnDestroy {
 			pieSeries.dataFields.category = "Outcome1";
 
 			pieSeries.slices.template.stroke = am4core.color("#fff");
-			pieSeries.slices.template.strokeWidth = 2;
+			pieSeries.slices.template.strokeWidth = 3;
 			pieSeries.slices.template.strokeOpacity = 1;
 			pieSeries.ticks.template.disabled = true;
 			pieSeries.alignLabels = false;
