@@ -35,7 +35,8 @@ export class WhenComponent implements AfterViewInit, OnDestroy {
       categoryAxis.dataFields.category = "date";
       categoryAxis.renderer.grid.template.location = 0;
       categoryAxis.renderer.minGridDistance = 20;
-      categoryAxis.zoom({start: .5, end: .55}, true);
+      categoryAxis.renderer.labels.template.rotation = 270;
+      categoryAxis.zoom({start: .5, end: 0.98}, true);
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
       valueAxis.title.text = "Cases";
@@ -71,7 +72,7 @@ export class WhenComponent implements AfterViewInit, OnDestroy {
 
   responsiveHandler(): void {
     if (document.body.clientWidth <= 930 ) {
-      
+
     }
   }
 
