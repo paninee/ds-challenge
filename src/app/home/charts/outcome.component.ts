@@ -34,7 +34,7 @@ export class OutcomeComponent implements OnChanges, AfterViewInit, OnDestroy {
 			chart.data = this.data.data;
 
 			// Set inner radius
-			chart.innerRadius = am4core.percent(70);
+			chart.innerRadius = am4core.percent(55);
 
 			// Add and configure Series
 			const pieSeries = chart.series.push(new am4charts.PieSeries());
