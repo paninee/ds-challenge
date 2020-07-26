@@ -1,4 +1,4 @@
-import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import { PieChart } from './../../util/pie.chart';
 
 @Component({
@@ -7,7 +7,7 @@ import { PieChart } from './../../util/pie.chart';
   	<div [id]="chartId" class="pie-chart"></div>
   `
 })
-export class OutbreakComponent extends PieChart implements AfterViewInit, OnDestroy {
+export class OutbreakComponent extends PieChart implements OnChanges, AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() data: any[] = [];
   @Input() dataFields: {value: any, category: string};
@@ -23,6 +23,12 @@ export class OutbreakComponent extends PieChart implements AfterViewInit, OnDest
       '#E92036',
       '#0CA65C'
     ];
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.data.firstChange && changes.data.currentValue) {
+      this.chart.data = changes.data.currentValue;
+    }
   }
 
   ngAfterViewInit() {

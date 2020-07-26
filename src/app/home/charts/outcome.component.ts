@@ -53,12 +53,13 @@ export class OutcomeComponent implements OnChanges, AfterViewInit, OnDestroy {
         am4core.color('#0CA65C')
       ];
 
-			this.label = pieSeries.createChild(am4core.Label);
-			this.label.text = `${this.data.fatalPercentage}%`;
-			this.label.horizontalCenter = "middle";
-			this.label.verticalCenter = "middle";
-			this.label.fontSize = 20;
+			const label = pieSeries.createChild(am4core.Label);
+			label.text = `${this.data.fatalPercentage}%`;
+			label.horizontalCenter = "middle";
+			label.verticalCenter = "middle";
+			label.fontSize = 20;
 
+      this.label = label;
       this.chart = chart;
     });
   }
