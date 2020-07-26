@@ -1,4 +1,4 @@
-import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy, HostListener, OnChanges, SimpleChanges } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -16,6 +16,7 @@ export class RiskComponent implements AfterViewInit, OnDestroy {
 	private chart: am4charts.GaugeChart;
 	private radarContainerLabel: any;
 	public am4charts: any;
+	private hand: any;
 
 	@HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -24,6 +25,13 @@ export class RiskComponent implements AfterViewInit, OnDestroy {
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.threatLevel.firstChange && changes.threatLevel.currentValue) {
+      this.hand.value = changes.threatLevel.currentValue.score;
+      this.hand.showValue(changes.threatLevel.currentValue.score, 1000, am4core.ease.cubicOut);
+    }
   }
 
   ngAfterViewInit() {
@@ -105,6 +113,7 @@ export class RiskComponent implements AfterViewInit, OnDestroy {
 			hand.fill = am4core.color("#444");
 			hand.stroke = am4core.color("#444");
 
+			this.hand = hand;
       this.chart = chart;
     });
   }
