@@ -36,7 +36,7 @@
           <div class="form-group">
             <div class="pr-1">
               <select class="form-control" formControlName="acquisition">
-                <option value="">Acquisition</option>
+                <option value="" disabled>Acquisition</option>
                 <option *ngFor="let item of selectOptions.acquisition; let i = index; trackBy: appService.trackByFn;" [value]="item.key">{{item.name}}</option>
               </select>
             </div>

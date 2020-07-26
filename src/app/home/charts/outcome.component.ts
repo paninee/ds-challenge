@@ -1,4 +1,4 @@
-import { Component, NgZone, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, NgZone, Input, AfterViewInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
@@ -10,14 +10,22 @@ am4core.useTheme(am4themes_animated);
   	<div [id]="chartId" class="donut-chart"></div>
   `
 })
-export class OutcomeComponent implements AfterViewInit, OnDestroy {
+export class OutcomeComponent implements OnChanges, AfterViewInit, OnDestroy {
 	@Input() chartId: string;
 	@Input() data: any;
 	private chart: am4charts.PieChart;
 	public am4charts: any;
+  public label: any;
 
   constructor(private zone: NgZone) {
   	this.am4charts = am4charts;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.data.firstChange && changes.data.currentValue) {
+      this.chart.data = changes.data.currentValue.data;
+      this.label.text = `${changes.data.currentValue.fatalPercentage}%`;
+    }
   }
 
   ngAfterViewInit() {
@@ -45,16 +53,17 @@ export class OutcomeComponent implements AfterViewInit, OnDestroy {
         am4core.color('#0CA65C')
       ];
 
-			const label = pieSeries.createChild(am4core.Label);
-			label.text = `${this.data.fatalPercentage}%`;
-			label.horizontalCenter = "middle";
-			label.verticalCenter = "middle";
-			label.fontSize = 20;
+			this.label = pieSeries.createChild(am4core.Label);
+			this.label.text = `${this.data.fatalPercentage}%`;
+			this.label.horizontalCenter = "middle";
+			this.label.verticalCenter = "middle";
+			this.label.fontSize = 20;
 
       this.chart = chart;
     });
   }
-ngOnDestroy() {
+
+  ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
         this.chart.dispose();
