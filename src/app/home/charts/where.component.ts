@@ -65,8 +65,8 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
         series.heatRules.push({
           target: circle,
           property: "fill",
-          min: am4core.color("#ea2136"),
-          max: am4core.color("#8d0816")
+          min: am4core.color("#ffbabfdd"),
+          max: am4core.color("#c40a1cdd")
         });
 
         return series;
