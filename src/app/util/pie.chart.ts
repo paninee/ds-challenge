@@ -27,6 +27,8 @@ export class PieChart {
 		pieSeries.dataFields.category = this.dataFields.category;
 		pieSeries.slices.template.stroke = am4core.color("#fff");
 		pieSeries.slices.template.strokeOpacity = 1;
+		pieSeries.labels.template.maxWidth = 130;
+    pieSeries.labels.template.wrap = true;
 
 		// Generate color set
 		pieSeries.colors.list = this.generateColorSet();
