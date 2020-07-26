@@ -43,7 +43,7 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
 
         let circle = template.createChild(am4core.Circle);
         circle.radius = 20;
-        circle.fillOpacity = 0.7;
+        circle.fillOpacity = 1;
         circle.verticalCenter = "middle";
         circle.horizontalCenter = "middle";
         circle.nonScaling = true;
@@ -60,6 +60,13 @@ export class WhereComponent implements AfterViewInit, OnDestroy {
           property: "radius",
           min: 10,
           max: 30
+        });
+
+        series.heatRules.push({
+          target: circle,
+          property: "fill",
+          min: am4core.color("#ea2136"),
+          max: am4core.color("#8d0816")
         });
 
         return series;
