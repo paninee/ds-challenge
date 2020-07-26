@@ -8,10 +8,9 @@ import { PieChart } from './../../util/pie.chart';
   `
 })
 export class OutbreakComponent extends PieChart implements OnChanges, AfterViewInit, OnDestroy {
+  public dataFields: {value: any, category: string} = {value: 'count', category: 'Outbreak_Related'};
 	@Input() chartId: string;
 	@Input() data: any[] = [];
-  @Input() dataFields: {value: any, category: string};
-
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.handleViewPortChange();

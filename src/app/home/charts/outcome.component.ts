@@ -9,10 +9,10 @@ import { PieChart } from './../../util/pie.chart';
 })
 export class OutcomeComponent extends PieChart implements OnChanges, AfterViewInit, OnDestroy {
   private label: any;
+  public dataFields: {value: any, category: string} = {value: 'count', category: 'Outcome1'};
   @Input() chartId: string;
   @Input() data: any[] = [];
   @Input() fatalPercentage: any;
-  @Input() dataFields: {value: any, category: string} = {value: 'count', category: 'Outcome1'};
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.handleViewPortChange();

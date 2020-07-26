@@ -8,10 +8,9 @@ import { PieChart } from './../../util/pie.chart';
   `
 })
 export class AgeComponent extends PieChart implements OnChanges, AfterViewInit, OnDestroy {
+  public dataFields: {value: any, category: string} = {value: 'count', category: 'Age_Group'};
 	@Input() chartId: string;
 	@Input() data: any[] = [];
-  @Input() dataFields: {value: any, category: string};
-
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.handleViewPortChange();
