@@ -5,8 +5,7 @@ import { PieChart } from './../../util/pie.chart';
   selector: 'app-outbreak',
   template: `
   	<div [id]="chartId" class="pie-chart"></div>
-  `,
-  styles: [`div {height: 200px;}`]
+  `
 })
 export class OutbreakComponent extends PieChart implements AfterViewInit, OnDestroy {
 	@Input() chartId: string;
@@ -15,7 +14,7 @@ export class OutbreakComponent extends PieChart implements AfterViewInit, OnDest
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.generateWidth();
+    this.handleViewPortChange();
   }
 
   constructor(private zone: NgZone) {
@@ -30,12 +29,6 @@ export class OutbreakComponent extends PieChart implements AfterViewInit, OnDest
     this.zone.runOutsideAngular(() => {
       this.createChart();
     });
-  }
-
-  generateWidth(): void {
-    if (document.body.clientWidth <= 930 ) {
-      // console.log(this.chart.series);
-    }
   }
 
   ngOnDestroy() {

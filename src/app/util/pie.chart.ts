@@ -16,13 +16,21 @@ export class PieChart {
 	}
 
 	createChart(): void {
-		let chart = am4core.create(this.chartId, am4charts.PieChart);
+		const chart = am4core.create(this.chartId, am4charts.PieChart);
 
 		// Add data
 		chart.data = this.data;
 
+		// Add legend
+		// chart.legend = new am4charts.Legend();
+		// chart.legend.position = "bottom";
+		// chart.legend.valueLabels.template.align = "left";
+		// chart.legend.valueLabels.template.textAlign = "end"; 
+		// chart.legend.itemContainers.template.paddingTop = 5;
+		// chart.legend.itemContainers.template.paddingBottom = 5;
+
 		// Add and configure Series
-		var pieSeries = chart.series.push(new am4charts.PieSeries());
+		const pieSeries = chart.series.push(new am4charts.PieSeries());
 		pieSeries.dataFields.value = this.dataFields.value;
 		pieSeries.dataFields.category = this.dataFields.category;
 		pieSeries.slices.template.stroke = am4core.color("#fff");
@@ -40,6 +48,7 @@ export class PieChart {
 		chart.hiddenState.properties.radius = am4core.percent(0);
 
 		this.chart = chart;
+		this.handleViewPortChange();
 	}
 
 	generateColorSet(): any[] {
@@ -48,4 +57,21 @@ export class PieChart {
 		});
 		return colorSet;
 	}
+
+	handleViewPortChange(): void {
+    if (document.body.clientWidth <= 930 ) {
+    	if (!this.chart.legend) {
+	   		this.chart.legend = new am4charts.Legend();
+				this.chart.legend.position = "bottom";
+				this.chart.legend.valueLabels.template.align = "left";
+				this.chart.legend.valueLabels.template.textAlign = "end"; 
+				this.chart.legend.itemContainers.template.paddingTop = 5;
+				this.chart.legend.itemContainers.template.paddingBottom = 5;
+			}
+    } else {
+    	if (this.chart.legend) {
+    		this.chart.legend.dispose();
+    	}
+    }
+  }
 }

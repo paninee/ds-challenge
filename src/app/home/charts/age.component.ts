@@ -14,7 +14,7 @@ export class AgeComponent extends PieChart implements AfterViewInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.generateWidth();
+    this.handleViewPortChange();
   }
 
   constructor(private zone: NgZone) {
@@ -37,12 +37,6 @@ export class AgeComponent extends PieChart implements AfterViewInit, OnDestroy {
     this.zone.runOutsideAngular(() => {
       this.createChart();
     });
-  }
-
-  generateWidth(): void {
-    if (document.body.clientWidth <= 930 ) {
-      // console.log(this.chart.series);
-    }
   }
 
   ngOnDestroy() {
