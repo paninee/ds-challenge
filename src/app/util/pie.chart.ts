@@ -29,7 +29,7 @@ export class PieChart {
 		this.pieSeries.slices.template.stroke = am4core.color("#fff");
 		this.pieSeries.slices.template.strokeWidth = 1;
 		this.pieSeries.slices.template.strokeOpacity = 1;
-		this.pieSeries.labels.template.maxWidth = undefined;
+		this.pieSeries.labels.template.maxWidth = 100;
     this.pieSeries.labels.template.wrap = true;
 
 		// Generate color set
